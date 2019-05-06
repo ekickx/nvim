@@ -9,6 +9,7 @@ Plug 'honza/vim-snippets' " vim snippets
 Plug 'jaawerth/neomake-local-eslint-first' " for eslint local
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " nerd tree
 Plug 'terryma/vim-multiple-cursors' " Ctrl n multi cursor
+Plug 'MikeDacre/tmux-zsh-vim-titles'
 
 " editing
 Plug 'Raimondi/delimitMate' " automatic closing of quotes, parenthesis, brackets, etc.
