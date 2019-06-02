@@ -3,6 +3,8 @@ syntax enable
 
 set hlsearch
 
+set ignorecase
+
 set number
 
 """"""""""""""
@@ -68,6 +70,10 @@ if has("autocmd")
 
 endif " has("autocmd")
 
+" split stuff
+set splitbelow
+set splitright
+
 " tab stuff
 set tabstop=2
 set softtabstop=2
@@ -129,7 +135,7 @@ set hid " buffer becomes hidden when abandoned
 autocmd BufNewFile,BufRead,BufEnter *.md,*.markdown :syntax match markdownIgnore "_"
 
 " clipboard " salam:x
-if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
-  set clipboard=unnamed
-endif
-set clipboard=unnamedplus " salam
+" if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
+"   set clipboard=unnamed
+" endif
+" set clipboard=unnamedplus " salam
