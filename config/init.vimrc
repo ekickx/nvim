@@ -2,6 +2,7 @@ call plug#begin()
 
 " general
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " nerd tree
+Plug 'lambdalisue/suda.vim' " For handling sudo in neovim
 
 " editing
 Plug 'Raimondi/delimitMate' " automatic closing of quotes, parenthesis, brackets, etc.

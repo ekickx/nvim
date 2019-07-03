@@ -86,7 +86,7 @@ set pastetoggle=<F2>
 set showmode
 
 " override read-only permissions
-cmap w!! %!sudo tee > /dev/null %
+cmap w!! :w suda://% <CR>
 
 " allow ,, for vimsneak
 nmap <Leader>, <Plug>SneakPrevious
