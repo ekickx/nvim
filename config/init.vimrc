@@ -11,6 +11,8 @@ Plug 'junegunn/vim-easy-align' " indent multi text ( easy align : so many featur
 Plug 'mbbill/undotree' " undo tree
 Plug 'tpope/vim-commentary' " for multiline became to comment lines
 Plug 'mattn/emmet-vim' " if you dunno emmet, i dunno what you've been doing untill now
+Plug 'sheerun/vim-polyglot' " better syntax highlighting
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP support
 
 " eye candy
 Plug 'lilydjwg/colorizer', { 'on': 'ColorToggle' } " #aaa to Colorize
