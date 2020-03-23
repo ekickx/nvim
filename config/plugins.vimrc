@@ -32,7 +32,7 @@ let g:NERDTreeDirArrowCollapsible = ''
 let g:indentLine_char_list = '|'
 autocmd BufWinEnter * :set list lcs=tab:\|\ 
 
-let g:airline_theme='poppin'
+let g:airline_theme='edge'
 
 " Emmet
 let g:user_emmet_leader_key=','

@@ -17,7 +17,8 @@ if (has("termguicolors"))
 endif
 
 " Theme
-colorscheme snazzy
+set background=light
+colorscheme edge
 """"""""""""
 
 " allow backspacing over everything in insert mode
