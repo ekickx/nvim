@@ -17,8 +17,9 @@ if (has("termguicolors"))
 endif
 
 " Theme
-set background=light
-colorscheme edge
+set background=dark
+let ayucolor="light"
+colorscheme ayu
 """"""""""""
 
 " allow backspacing over everything in insert mode

@@ -22,7 +22,7 @@ Plug 'vim-airline/vim-airline-themes' " airline theme...
 Plug 'Yggdroot/indentLine'
 
 " colorschemes
-Plug 'sainnhe/edge' " noice theme
+Plug 'ayu-theme/ayu-vim' " noice theme
 Plug 'ryanoasis/vim-devicons' " look at beauty icons
 
 call plug#end()

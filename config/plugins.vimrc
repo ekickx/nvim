@@ -30,7 +30,7 @@ let g:NERDTreeDirArrowCollapsible = ''
 
 " indent line
 let g:indentLine_char = '│'
-autocmd BufWinEnter * :set list lcs=tab:\│\
+autocmd BufWinEnter * :set list lcs=tab:\│\ 
 
 let g:airline_theme='edge'
 
