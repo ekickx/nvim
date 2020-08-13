@@ -20,6 +20,10 @@ nnoremap <Leader>w< <C-w><
 nnoremap <Leader>w> <C-w>>
 nnoremap <Leader>w- <C-w>-
 nnoremap <Leader>w+ <C-w>+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 nnoremap <Leader>s :split<CR>
 nnoremap <Leader>v :vsplit<CR>
 nnoremap <Leader>wx :close<CR>
@@ -30,14 +34,12 @@ vnoremap ' :Commentary<CR>
 " :7,17Commentary
 
 " multiline moving
-" <A-j>  ∆
-" <A-k>  ˚
-nnoremap ∆ :m .+1<CR>==
-nnoremap ˚ :m .-2<CR>==
-vnoremap ∆ :m '>+1<CR>gv=gv
-vnoremap ˚ :m '<-2<CR>gv=gv
-inoremap ∆ <Esc>:m .+1<CR>==gi
-inoremap ˚ <Esc>:m .-2<CR>==gi
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
 
 " command mode maps
 " better command-line window scrolling with <C-P> & <C-N>
