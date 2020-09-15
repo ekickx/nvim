@@ -16,10 +16,12 @@ nnoremap <Leader>d :bd!<CR>
 nnoremap <Leader>e :enew<CR>
 
 " window keys
+" resize window
 nnoremap <Leader>w< <C-w><
 nnoremap <Leader>w> <C-w>>
 nnoremap <Leader>w- <C-w>-
 nnoremap <Leader>w+ <C-w>+
+" move between window
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>

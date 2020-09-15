@@ -18,8 +18,7 @@ endif
 
 " Theme
 set background=dark
-let ayucolor="light"
-colorscheme ayu
+colorscheme snazzy
 """"""""""""
 
 " allow backspacing over everything in insert mode
@@ -103,7 +102,7 @@ set termencoding=utf-8
 set encoding=utf-8
 set fileencoding=utf-8
 
-set so=5 " scroll lines above/below cursor
+set so=0 " scroll lines above/below cursor
 set sidescrolloff=5
 set lazyredraw
 

@@ -3,6 +3,7 @@ call plug#begin()
 " general
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " nerd tree
 Plug 'lambdalisue/suda.vim' " For handling sudo in neovim
+Plug 'wakatime/vim-wakatime' " Time tracking programming activity
 
 " editing
 Plug 'Raimondi/delimitMate' " automatic closing of quotes, parenthesis, brackets, etc.
@@ -22,7 +23,7 @@ Plug 'vim-airline/vim-airline-themes' " airline theme...
 Plug 'Yggdroot/indentLine'
 
 " colorschemes
-Plug 'ayu-theme/ayu-vim' " noice theme
+Plug 'connorholyday/vim-snazzy' " noice theme
 Plug 'ryanoasis/vim-devicons' " look at beauty icons
 
 call plug#end()
