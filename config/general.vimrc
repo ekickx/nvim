@@ -5,7 +5,7 @@ set hlsearch
 
 set ignorecase
 
-set number
+set relativenumber
 
 """"""""""""""
 " For Neovim 0.1.3 and 0.1.4
