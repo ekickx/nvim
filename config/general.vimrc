@@ -5,6 +5,7 @@ set hlsearch
 
 set ignorecase
 
+set number
 set relativenumber
 
 """"""""""""""
