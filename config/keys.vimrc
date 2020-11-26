@@ -6,11 +6,8 @@ nnoremap <Leader>; ,
 
 " buffer keys
 nnoremap <Leader>bb :b#<CR>
-nnoremap <Leader>n :bn<CR>
-nnoremap <Leader>q :bp<CR>
-nnoremap <Leader>bf :bf<CR>
-nnoremap <Leader>bl :bl<CR>
-nnoremap <Leader>bw :w<CR>:bd<CR>
+nnoremap <Leader>k :bn<CR>
+nnoremap <Leader>j :bp<CR>
 nnoremap <Leader>d :bd!<CR>
 " new buffer/tab
 nnoremap <Leader>e :enew<CR>

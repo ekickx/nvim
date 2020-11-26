@@ -132,6 +132,11 @@ set sessionoptions-=options
 
 " buffer settings
 set hid " buffer becomes hidden when abandoned
+" auto change dir based on current file's buffer
+autocmd BufEnter * silent! lcd %:p:h
+
+" Use italic on comment
+highlight Comment cterm=italic gui=italic
 
 " stop highlighting of underscores in markdown files
 autocmd BufNewFile,BufRead,BufEnter *.md,*.markdown :syntax match markdownIgnore "_"
