@@ -2,16 +2,17 @@ call plug#begin()
 
 " general
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " nerd tree
-Plug 'lambdalisue/suda.vim' " For handling sudo in neovim
-Plug 'wakatime/vim-wakatime' " Time tracking programming activity
+Plug 'mcchrish/nnn.vim' " file manager
+Plug 'lambdalisue/suda.vim' " for handling sudo in neovim
+Plug 'wakatime/vim-wakatime' " time tracking programming activity
 
 " editing
 Plug 'Raimondi/delimitMate' " automatic closing of quotes, parenthesis, brackets, etc.
 Plug 'airblade/vim-gitgutter' " shows a git diff in the 'gutter'
 Plug 'junegunn/vim-easy-align' " indent multi text ( easy align : so many feature ), eg: `gaip* `
 Plug 'mbbill/undotree' " undo tree
-Plug 'tpope/vim-commentary' " for multiline became to comment lines
-Plug 'mattn/emmet-vim' " if you dunno emmet, i dunno what you've been doing untill now
+Plug 'tpope/vim-commentary' " to comment lines
+Plug 'mattn/emmet-vim' " emmet is emmet
 Plug 'sheerun/vim-polyglot' " better syntax highlighting
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP support
 

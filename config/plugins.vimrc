@@ -6,6 +6,9 @@ hi Normal guibg=NONE
 hi EndOfBuffer ctermbg=NONE
 hi LineNr ctermbg=234
 
+" Remove gutter bg
+hi SignColumn guibg=NONE
+
 " delimitMate options
 let delimitMate_expand_cr=1
 
@@ -27,6 +30,10 @@ let g:NERDTreeWinSize=20
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
+
+" nnn
+" Floating window
+let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
 
 " indent line
 let g:indentLine_char = '│'
