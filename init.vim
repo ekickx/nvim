@@ -1,35 +1,69 @@
 call plug#begin()
 
-" general
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " nerd tree
-Plug 'mcchrish/nnn.vim' " file manager
-Plug 'lambdalisue/suda.vim' " for handling sudo in neovim
-Plug 'wakatime/vim-wakatime' " time tracking programming activity
-
-" editing
-Plug 'Raimondi/delimitMate' " automatic closing of quotes, parenthesis, brackets, etc.
-Plug 'airblade/vim-gitgutter' " shows a git diff in the 'gutter'
-Plug 'junegunn/vim-easy-align' " indent multi text ( easy align : so many feature ), eg: `gaip* `
-Plug 'mbbill/undotree' " undo tree
-Plug 'tpope/vim-commentary' " to comment lines
-Plug 'mattn/emmet-vim' " emmet is emmet
-Plug 'sheerun/vim-polyglot' " better syntax highlighting
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP support
-
-" eye candy
-Plug 'lilydjwg/colorizer', { 'on': 'ColorToggle' } " #aaa to Colorize
-Plug 'vim-airline/vim-airline' " lean & mean status/tabline for vim that's light as air
-Plug 'vim-airline/vim-airline-themes' " airline theme...
-Plug 'Yggdroot/indentLine'
-
+" Interface
+" statusline
+Plug 'itchyny/lightline.vim'
+" statusline but on top, for buffer/tab
+Plug 'mengelbrecht/lightline-bufferline'
+" look at beauty icons
+Plug 'ryanoasis/vim-devicons'
 " colorschemes
-Plug 'connorholyday/vim-snazzy' " noice theme
-Plug 'ryanoasis/vim-devicons' " look at beauty icons
+Plug 'connorholyday/vim-snazzy'
+" better syntax highlighting
+Plug 'sheerun/vim-polyglot'
+
+" Window management
+" easyly resize (and move between) window
+Plug 'simeji/winresizer'
+" swap window without ruining your layour
+Plug 'wesQ3/vim-windowswap'
+
+" Git
+" git wrapper (e.g show branch on statusline)
+Plug 'tpope/vim-fugitive'
+" shows git diff, alternative to gitgutter
+Plug 'mhinz/vim-signify'
+
+" nerdtree
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" file manager
+Plug 'mcchrish/nnn.vim'
+" float terminal
+Plug 'voldikss/vim-floaterm'
+" show keybinding in popup like on doom-emacs
+Plug 'liuchengxu/vim-which-key'
+" for handling sudo in neovim
+Plug 'lambdalisue/suda.vim'
+" automatic closing of quotes, parenthesis, brackets, etc.
+Plug 'Raimondi/delimitMate'
+" indent multi text ( easy align : so many feature ), eg: `gaip* `
+Plug 'junegunn/vim-easy-align'
+" undo tree
+Plug 'mbbill/undotree'
+" to comment lines
+Plug 'tpope/vim-commentary'
+" indentline
+Plug 'Yggdroot/indentLine'
+" show color on color code
+Plug 'lilydjwg/colorizer', { 'on': 'ColorToggle' } 
+" " LSP support
+" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+" " time tracking programming activity
+" Plug 'wakatime/vim-wakatime'
+
+" " html
+" " emmet is emmet
+" Plug 'mattn/emmet-vim'
+
+" " go
+" " go devlopment plugin
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
 " Source config
-source $HOME/.config/nvim/config/general.vimrc
-source $HOME/.config/nvim/config/plugins.vimrc
-source $HOME/.config/nvim/config/keys.vimrc
-source $HOME/.config/nvim/config/line.vimrc
+source $HOME/.config/nvim/config/general.vim
+source $HOME/.config/nvim/config/keys.vim
+for file in split(glob('$HOME/.config/nvim/config/plugins/*.vim'), '\n')
+  exe 'source' file 
+endfor
