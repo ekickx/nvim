@@ -1,5 +1,10 @@
 > This config is inspired by [mnabil](https://github.com/mnabila/nvimrc) and [bandithijo](https://github.com/bandithijo/nvimrc/) nvimrc
 
+- [Preview](#preview)
+- [How Config Organized](#how-config-organized)
+- [Keybinding](#keybinding)
+- [Question](#question)
+
 # Preview
 
 ![Neovim Preview](https://raw.githubusercontent.com/ekickx/mmm-nvimrc/master/preview.png)
@@ -19,14 +24,14 @@ nvim
 
 # Keybinding
 
-| Function                    | Mode  | Keybind                                                                                                                                                    |
+| Function                    | Mode  | Keybind                                                                                                                                             |
 | --------------------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Leader                      |       | <kbd>Space</kbd>                                                                                                                                           |
 | Refresh Config              | N     | <kbd>F5</kbd>                                                                                                                                              |
 | **Buffer**                  |       |                                                                                                                                                            |
 | New Buffer                  | N     | <kbd>Space</kbd> <kbd>b</kbd> <kbd>N</kbd>                                                                                                                 |
 | Delete Buffer               | N     | <kbd>Space</kbd> <kbd>b</kbd> <kbd>d</kbd>                                                                                                                 |
-| Switch to Buffer `number`th | N     | <kbd>Space</kbd> <kbd>b</kbd> <kbd>`number`</kbd> or <kbd>Space</kbd> <kbd>`number`</kbd>                                                                  |
+| Switch to Buffer `number`<sup>th<sup> | N     | <kbd>Space</kbd> <kbd>b</kbd> <kbd>`number`</kbd> or <kbd>Space</kbd> <kbd>`number`</kbd>                                                                  |
 | Next Buffer                 | N     | <kbd>Space</kbd> <kbd>b</kbd>     <kbd>n</kbd> or <kbd>Space</kbd> <kbd>l</kbd>                                                                            |
 | Previous Buffer             | N     | <kbd>Space</kbd> <kbd>b</kbd> <kbd>p</kbd> or <kbd>Space</kbd> <kbd>h</kbd>                                                                                |
 | Previously Visited Buffer   | N     | <kbd>Space</kbd> <kbd>b</kbd> <kbd>b</kbd>                                                                                                                 |
@@ -52,4 +57,6 @@ nvim
 | Next Terminal               | N/T   | <kbd>Space</kbd> <kbd>t</kbd> <kbd>l</kbd>                                                                                                                 |
 | Previous Terminal           | N/T   | <kbd>Space</kbd> <kbd>t</kbd> <kbd>h</kbd>                                                                                                                 |
 
+# Question
 
+If you have any question ask it in [here](https://github.com/ekickx/mmm-nvimrc/issues/1)
