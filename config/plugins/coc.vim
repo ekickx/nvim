@@ -1,0 +1,18 @@
+" let g:coc_global_extensions = [
+"   \ 'coc-snippets',
+"   \ 'coc-actions',
+"   \ 'coc-sh',
+"   \ 'coc-lists',
+"   \ 'coc-emmet',
+"   \ 'coc-tsserver',
+"   \ 'coc-html',
+"   \ 'coc-css',
+"   \ 'coc-cssmodules',
+"   \ 'coc-yaml',
+"   \ 'coc-svg',
+"   \ 'coc-prettier',
+"   \ 'coc-vimlsp',
+"   \ 'coc-yank',
+"   \ 'coc-json',
+"   \ 'coc-marketplace',
+"   \ ]

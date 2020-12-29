@@ -23,6 +23,8 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'tpope/vim-fugitive'
 " shows git diff, alternative to gitgutter
 Plug 'mhinz/vim-signify'
+" Easier commit message
+Plug 'rhysd/committia.vim'
 
 " nerdtree
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -42,11 +44,20 @@ Plug 'junegunn/vim-easy-align'
 Plug 'mbbill/undotree'
 " to comment lines
 Plug 'tpope/vim-commentary'
+" smooth scrolling
+Plug 'psliwka/vim-smoothie'
 " indentline
 Plug 'Yggdroot/indentLine'
 " show color on color code
 Plug 'lilydjwg/colorizer', { 'on': 'ColorToggle' } 
-" " LSP support
+" Completion
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" LSP support
+Plug 'autozimu/LanguageClient-neovim', {
+      \ 'branch': 'next',
+      \ 'do': 'bash install.sh',
+      \ }
+" Plug 'dense-analysis/ale'
 " Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 " " time tracking programming activity
 " Plug 'wakatime/vim-wakatime'
@@ -57,7 +68,7 @@ Plug 'lilydjwg/colorizer', { 'on': 'ColorToggle' }
 
 " " go
 " " go devlopment plugin
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 

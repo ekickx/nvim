@@ -4,17 +4,15 @@ let mapleader = " "
 " Buffer keys
 " new buffer
 nnoremap <Leader>bN :enew<CR>
-" delete buffer
-nnoremap <Leader>bd :bd!<CR>
+" delete/close buffer
+nnoremap <Leader>bx :bd!<CR>
 "
 " Switch buffer
 " prevously edited buffer
 nnoremap <Leader>bb :b#<CR>
 " next buffer
-nnoremap <Leader>l :bn<CR>
 nnoremap <Leader>bn :bn<CR>
 " prev buffer
-nnoremap <Leader>h :bp<CR>
 nnoremap <Leader>bp :bp<CR>
 "
 " Switch buffer with lightline-bufferline
@@ -27,7 +25,6 @@ nnoremap <Leader>6 :call lightline#bufferline#go(6)<CR>
 nnoremap <Leader>7 :call lightline#bufferline#go(7)<CR>
 nnoremap <Leader>8 :call lightline#bufferline#go(8)<CR>
 nnoremap <Leader>9 :call lightline#bufferline#go(9)<CR>
-nnoremap <Leader>0 :call lightline#bufferline#go(10)<CR>
 " or
 nnoremap <Leader>b1 :call lightline#bufferline#go(1)<CR>
 nnoremap <Leader>b2 :call lightline#bufferline#go(2)<CR>
@@ -38,7 +35,6 @@ nnoremap <Leader>b6 :call lightline#bufferline#go(6)<CR>
 nnoremap <Leader>b7 :call lightline#bufferline#go(7)<CR>
 nnoremap <Leader>b8 :call lightline#bufferline#go(8)<CR>
 nnoremap <Leader>b9 :call lightline#bufferline#go(9)<CR>
-nnoremap <Leader>b0 :call lightline#bufferline#go(10)<CR>
 
 " Window keys
 "
@@ -95,6 +91,22 @@ set foldnestmax=5
 " fold based on indent level
 set foldmethod=indent
 
+" Yank/copy to clipboard
+noremap <Leader>y "+y
+" Paste from clipboard
+noremap <Leader>p "+p
+
+" Toggle conceal
+function! ToggleConcealLevel()
+    if &conceallevel == 0
+        setlocal conceallevel=2
+    else
+        setlocal conceallevel=0
+    endif
+endfunction
+"
+nnoremap <silent> <Leader>c :call ToggleConcealLevel()<CR>
+
 " Function keys
 " toggle paste mode
 nnoremap <silent> <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
@@ -123,20 +135,38 @@ nnoremap <Leader>qn :NERDTreeToggle<CR>
 " Undotree
 nnoremap <Leader>qu :UndotreeToggle<CR>
 
+" LSP support with LanguageClient-Neovim plugin
+nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
+nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
+nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
+nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
+nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
+nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
+nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
+nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
+nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
+nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
+
 " nnn
 " start nnn in current dir
 nnoremap <leader>n :NnnPicker %:p:h<CR>
 
 " Float terminal
+" escape terminal
+tnoremap <Leader>te <C-\><C-n>
 " new term
-nnoremap <Leader>tn :FloatermNew<CR>
-tnoremap <Leader>tn <C-\><C-n>:FloatermNew<CR>
+nnoremap <Leader>tN :FloatermNew<CR>
+tnoremap <Leader>tN <C-\><C-n>:FloatermNew<CR>
 " next term
 nnoremap <Leader>tl :FloatermNext<CR>
 tnoremap <Leader>tl <C-\><C-n>:FloatermNext<CR>
+nnoremap <Leader>tn :FloatermNext<CR>
+tnoremap <Leader>tn <C-\><C-n>:FloatermNext<CR>
 " prev term
 nnoremap <Leader>th :FloatermPrev<CR>
 tnoremap <Leader>th <C-\><C-n>:FloatermPrev<CR>
+nnoremap <Leader>tp :FloatermPrev<CR>
+tnoremap <Leader>tp <C-\><C-n>:FloatermPrev<CR>
 " toggle term
 nnoremap <Leader>tt :FloatermToggle<CR>
 tnoremap <Leader>tt <C-\><C-n>:FloatermToggle<CR>

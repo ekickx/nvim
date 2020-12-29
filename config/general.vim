@@ -109,6 +109,8 @@ set lazyredraw
 
 set magic " for regular expressions
 
+set fillchars=eob:\ 
+
 if &listchars ==# 'eol:$'
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 endif
