@@ -9,10 +9,7 @@ set number
 set relativenumber
 
 """"""""""""""
-" For Neovim 0.1.3 and 0.1.4
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-" Or if you have Neovim >= 0.1.5
 if (has("termguicolors"))
   set termguicolors
 endif
@@ -31,13 +28,13 @@ else
   set backup		" keep a backup file
 endif
 
-set undodir=~/.config/nvim/undodir
+set undodir=~/.local/share/nvim/undodir
 set undofile
 set undolevels=100
 set undoreload=1000
 
-set backupdir=~/.config/nvim/backup
-set directory=~/.config/nvim/backup
+set backupdir=~/.local/share/nvim/backup
+set directory=~/.local/share/nvim/backup
 
 set ruler		" show the cursor position all the time
 set cursorline
@@ -142,9 +139,3 @@ highlight Comment cterm=italic gui=italic
 
 " stop highlighting of underscores in markdown files
 autocmd BufNewFile,BufRead,BufEnter *.md,*.markdown :syntax match markdownIgnore "_"
-
-" clipboard " salam:x
-" if (executable('pbcopy') || executable('xclip') || executable('xsel')) && has('clipboard')
-"   set clipboard=unnamed
-" endif
-" set clipboard=unnamedplus " salam
