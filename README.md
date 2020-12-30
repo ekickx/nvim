@@ -1,3 +1,5 @@
+> **NOTE**: This config now only compatible for version v0.5. For lower version, see [nvim-stable branch](https://github.com/ekickx/mmm-nvimrc/tree/nvim-stable).
+
 > This config is inspired by [mnabil](https://github.com/mnabila/nvimrc) and [bandithijo](https://github.com/bandithijo/nvimrc/) nvimrc.
 
 > A good config is config made by yourself. This repo's intention is to share how I manage my config so you can use it as reference to make your own config. 
