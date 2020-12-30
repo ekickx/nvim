@@ -1,7 +1,5 @@
 " always show statusline
 set laststatus=2
-" always show tabline/bufferline
-set showtabline=2
 " hide default mode text (e.g. INSERT) as lightline already displays it
 set noshowmode 
 
@@ -11,17 +9,8 @@ let g:lightline = {
       \   'left': [[ 'mode', 'paste' ],['branch', 'hunks']],
       \   'right': [[ 'lineinfo', 'maxline' ],[ 'fileformat', 'fileencoding']]
       \},
-      \ 'tabline': {
-      \   'left': [['buffers']],
-      \},
       \ 'component': {
       \   'maxline': "%{line('$')}"
-      \},
-      \ 'component_expand': {
-      \   'buffers': 'lightline#bufferline#buffers'
-      \},
-      \ 'component_type': {
-      \   'buffers': 'tabsel'
       \},
       \ 'component_function': {
       \   'branch': 'LightlineFugitive',
