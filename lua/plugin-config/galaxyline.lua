@@ -1,4 +1,5 @@
-lua << EOF
+vim.cmd[[packadd galaxyline.nvim]]
+
 local gl = require('galaxyline')
 local gls = gl.section
 gl.short_line_list = {'LuaTree','vista','dbui'}
@@ -204,4 +205,3 @@ gls.short_line_left[1] = {
     highlight = {colors.purple,colors.bg}
   }
 }
-EOF

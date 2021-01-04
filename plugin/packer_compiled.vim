@@ -9,6 +9,48 @@ endif
 
 lua << END
 local plugins = {
+  ["galaxyline.nvim"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/galaxyline.nvim"
+  },
+  ["gitsigns.nvim"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
+  },
+  indentLine = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/indentLine"
+  },
+  ["lexima.vim"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/lexima.vim"
+  },
+  ["nnn.vim"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/nnn.vim"
+  },
+  ["nvim-bufferline.lua"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/nvim-bufferline.lua"
+  },
+  ["nvim-lspconfig"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/nvim-lspconfig"
+  },
   ["nvim-treesitter"] = {
     loaded = false,
     only_sequence = false,
@@ -20,6 +62,36 @@ local plugins = {
     only_sequence = false,
     only_setup = false,
     path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/packer.nvim"
+  },
+  ["vim-floaterm"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/vim-floaterm"
+  },
+  ["vim-go"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/vim-go"
+  },
+  ["vim-which-key"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/vim-which-key"
+  },
+  ["vim-windowswap"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/vim-windowswap"
+  },
+  winresizer = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/winresizer"
   }
 }
 
@@ -144,8 +216,6 @@ end
 
 -- Pre-load configuration
 -- Post-load configuration
--- Config for: gitsigns.nvim
-loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0")()
 -- Conditional loads
 -- Load plugins in order defined by `after`
 END

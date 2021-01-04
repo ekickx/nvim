@@ -1,3 +1,5 @@
+packadd! winresizer
+
 " Replace esc functionality from `finish` to `cancel`
 " disable default behavior that use esc to `finish`
 let g:winresizer_finish_with_escape = 0

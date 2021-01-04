@@ -1,4 +1,3 @@
-lua << EOF
 vim.cmd[[packadd nvim-bufferline.lua]]
 
 require'bufferline'.setup{
@@ -41,4 +40,3 @@ require'bufferline'.setup{
     },
   }
 }
-EOF

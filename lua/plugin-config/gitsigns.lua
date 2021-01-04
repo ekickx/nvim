@@ -1,5 +1,5 @@
-hi SignColumn guibg=NONE
-lua << EOF
+vim.cmd[[packadd gitsigns.nvim]]
+
 require'gitsigns'.setup {
   signs = {
     add          = {hl = 'SignAdd'   , text = '┃'},
@@ -10,4 +10,3 @@ require'gitsigns'.setup {
   },
   sign_priority = 5,
 }
-EOF

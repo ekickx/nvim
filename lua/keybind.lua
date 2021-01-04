@@ -64,9 +64,12 @@ setmap('i', '<A-j>', '<Esc>:m .+1<CR>==gi', { noremap = true })
 setmap('i', '<A-k>', '<Esc>:m .-2<CR>==gi', { noremap = true })
 
 -- Yank/copy to clipboard
-setmap('n', '<Leader>y', '"+y', { noremap = true })
+setmap('v', '<Leader>y', '"+y', { noremap = true })
 -- Paste from clipboard
 setmap('n', '<Leader>p', '"+p', { noremap = true })
+
+-- Toggle conceal
+setmap("n", "<Leader>c", ":set <C-R>=&conceallevel ? 'conceallevel=0' : 'conceallevel=1'<CR><CR>", { noremap = true })
 
 -- Commentary
 setmap("n", "'", ":Commentary<CR>", { noremap = true })

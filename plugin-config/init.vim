@@ -1,0 +1,9 @@
+source $HOME/.config/nvim/plugin-config/colorizer.vim
+source $HOME/.config/nvim/plugin-config/indentline.vim
+source $HOME/.config/nvim/plugin-config/nnn.vim
+source $HOME/.config/nvim/plugin-config/nvim-bufferline.vim
+source $HOME/.config/nvim/plugin-config/vim-floaterm.vim
+source $HOME/.config/nvim/plugin-config/vim-go.vim
+source $HOME/.config/nvim/plugin-config/vim-which-key.vim
+source $HOME/.config/nvim/plugin-config/vim-windowswap.vim
+source $HOME/.config/nvim/plugin-config/winresizer.vim

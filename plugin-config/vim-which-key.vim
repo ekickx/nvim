@@ -1,3 +1,5 @@
+packadd! vim-which-key
+
 " Guide will popup after n milisecond Leader pressed
 set timeoutlen=500
 
@@ -20,6 +22,7 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 let g:which_key_map = {}
 
 " Single mapping
+let g:which_key_map.c = 'Toggle conceal'
 let g:which_key_map.f = 'File manager - nnn'
 let g:which_key_map.y = 'Copy to clipboard'
 let g:which_key_map.p = 'Paste from clipboard'

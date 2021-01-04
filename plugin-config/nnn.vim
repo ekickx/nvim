@@ -1,3 +1,5 @@
+packadd! nnn.vim
+
 " nnn
 " disable default binding
 let g:nnn#set_default_mappings = 0
