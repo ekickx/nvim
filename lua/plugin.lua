@@ -38,22 +38,23 @@ return require('packer').startup(function()
   -- snippet
   -- use {'hrsh7th/vim-vsnip', opt = true}
   -- completition
-  -- use 'hrsh7th/nvim-compe'
+  use 'hrsh7th/nvim-compe'
 
-  -- nerdtree
+  -- luatree
+  use 'kyazdani42/nvim-tree.lua'
   -- file manager
   use {'mcchrish/nnn.vim', opt = true}
   -- float terminal
-
   use {'voldikss/vim-floaterm', opt = true}
+
   -- show keybinding in popup like on doom-emacs
   use {'liuchengxu/vim-which-key', opt = true}
   -- for handling sudo in neovim
   use 'lambdalisue/suda.vim'
   -- automatic closing of quotes, parenthesis, brackets, etc.
-  use {'cohama/lexima.vim', opt = true}
+  use 'cohama/lexima.vim'
   -- indent multi text ( easy align : so many feature ), eg: `gaip* `
-  -- use {'junegunn/vim-easy-align', opt = true}
+  use 'junegunn/vim-easy-align'
   -- undo tree
   -- use {'mbbill/undotree', opt = true}
   -- to comment lines
@@ -61,7 +62,7 @@ return require('packer').startup(function()
   -- smooth scrolling
   use 'psliwka/vim-smoothie'
   -- show color on color code
-  use 'lilydjwg/colorizer'
+  use {'norcalli/nvim-colorizer.lua', opt = true}
 
   -- go
   use {'fatih/vim-go', opt = true}

@@ -27,12 +27,6 @@ local plugins = {
     only_setup = false,
     path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/indentLine"
   },
-  ["lexima.vim"] = {
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/lexima.vim"
-  },
   ["nnn.vim"] = {
     loaded = false,
     only_sequence = false,
@@ -44,6 +38,12 @@ local plugins = {
     only_sequence = false,
     only_setup = false,
     path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/nvim-bufferline.lua"
+  },
+  ["nvim-colorizer.lua"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/nvim-colorizer.lua"
   },
   ["nvim-lspconfig"] = {
     loaded = false,

@@ -79,14 +79,14 @@ setmap("v", "'", ":Commentary<CR>", { noremap = true })
 setmap("c", "w!!", ":w suda://% <CR>", { noremap = false })
 
 -- Colorizer
-setmap('n', '<Leader>qc', ':ColorToggle<CR>', { noremap = true})
--- Nerdtree
-setmap('n', '<Leader>qn', ':NERDTreeToggle<CR>', { noremap = true})
+setmap('n', '<Leader>qc', ':ColorizerToggle<CR>', { noremap = true })
+-- Luatree
+setmap('n', '<Leader>ql', ':NvimTreeToggle<CR>', { noremap = true })
 -- Undotree
-setmap('n', '<Leader>qu', ':UndotreeToggle<CR>', { noremap = true})
+setmap('n', '<Leader>qu', ':UndotreeToggle<CR>', { noremap = true })
 
 -- File manager - nnn
-setmap('n', '<leader>f', ':NnnPicker %:p:h<CR>', { noremap = true})
+setmap('n', '<leader>f', ':NnnPicker %:p:h<CR>', { noremap = true })
 
 -- Float terminal
 -- escape terminal
