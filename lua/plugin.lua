@@ -18,12 +18,6 @@ return require('packer').startup(function()
   -- indentline
   use {'Yggdroot/indentLine', opt = true}
 
-  -- Window management
-  -- easyly resize (and move between) window
-  use {'simeji/winresizer', opt = true}
-  -- swap window without ruining your layour
-  use {'wesQ3/vim-windowswap', opt = true}
-
   -- Git
   -- git wrapper (e.g show branch on statusline)
   use 'tpope/vim-fugitive'

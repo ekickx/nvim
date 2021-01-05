@@ -30,9 +30,3 @@ require('plugin-config.nvim-compe')
 
 -- Float Term
 require('plugin-config.vim-floaterm')
-
--- Windowswap
-require('plugin-config.vim-windowswap')
-
--- Winresizer
-require('plugin-config.winresizer')
