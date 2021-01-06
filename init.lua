@@ -4,4 +4,4 @@ require('setting')
 require('plugin')
 require('plugin-config')
 
-vim.cmd('source ~/.config/nvim/plugin-config/init.vim')
+vim.cmd('source ~/.config/nvim/vimscript/plugin-config/init.vim')
