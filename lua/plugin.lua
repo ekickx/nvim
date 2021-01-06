@@ -6,11 +6,11 @@ return require('packer').startup(function()
 
   -- Interface
   -- statusline
-  use {'glepnir/galaxyline.nvim', opt = true}
+  use 'glepnir/galaxyline.nvim'
   -- statusline but on top, for buffer/tab
   use {'akinsho/nvim-bufferline.lua', opt = true}
   -- look at beauty icons
-  use 'ryanoasis/vim-devicons'
+  use 'kyazdani42/nvim-web-devicons'
   -- colorschemes
   use 'lifepillar/vim-gruvbox8'
   -- better syntax highlighting
@@ -35,9 +35,7 @@ return require('packer').startup(function()
   use 'hrsh7th/nvim-compe'
 
   -- luatree
-  use 'kyazdani42/nvim-tree.lua'
-  -- file manager
-  use {'mcchrish/nnn.vim', opt = true}
+  use {'kyazdani42/nvim-tree.lua', opt = true}
   -- float terminal
   use {'voldikss/vim-floaterm', opt = true}
 

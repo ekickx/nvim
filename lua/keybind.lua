@@ -86,7 +86,7 @@ setmap('n', '<Leader>ql', ':NvimTreeToggle<CR>', { noremap = true })
 setmap('n', '<Leader>qu', ':UndotreeToggle<CR>', { noremap = true })
 
 -- File manager - nnn
-setmap('n', '<leader>f', ':NnnPicker %:p:h<CR>', { noremap = true })
+setmap('n', '<leader>f', ':FloatermNew --wintype=floating --width=0.7 --height=0.8 nnn<CR>', { noremap = true })
 
 -- Float terminal
 -- escape terminal

@@ -15,7 +15,9 @@ ColorUtil.override_gruvbox = function()
     {'Comment', { gui = 'italic' }},
     {'SignColumn', { bg = 'NONE' }},
     {'ColorColumn', { bg = '#3C3836' }},
-
+    {'Floaterm', { bg = '#242424' }},
+    {'FloatermBorder', { bg = 'NONE' }},
+    {'FloatermNC', { gui = 'italic', fg = 'gray' }},
   }
 
   for _, highlight in pairs(highlights) do

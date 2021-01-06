@@ -10,8 +10,8 @@ require('plugin-config.galaxyline')
 -- Bufferline
 require('plugin-config.nvim-bufferline')
 
--- Nnn file manager
-require('plugin-config.nnn')
+-- Luatree
+require('plugin-config.luatree')
 
 -- Treesitter for better syntax highlighting
 require('plugin-config.nvim-treesitter')

@@ -25,6 +25,7 @@ local options = {
   lazyredraw = true, -- lazyredraw to make macro faster
   list = true, -- display listchars
   number = true, -- enable number
+  noshowmode = true, -- don't show mode because bufferline already handle it
   relativenumber = true, -- enable relativenumber
   smartcase = true, -- improve searching using '/'
   smartindent = true, -- smarter indentation
