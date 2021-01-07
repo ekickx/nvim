@@ -9,12 +9,6 @@ endif
 
 lua << END
 local plugins = {
-  ["galaxyline.nvim"] = {
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/galaxyline.nvim"
-  },
   ["gitsigns.nvim"] = {
     loaded = false,
     only_sequence = false,
@@ -26,12 +20,6 @@ local plugins = {
     only_sequence = false,
     only_setup = false,
     path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/indentLine"
-  },
-  ["nnn.vim"] = {
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/nnn.vim"
   },
   ["nvim-bufferline.lua"] = {
     loaded = false,
@@ -50,6 +38,12 @@ local plugins = {
     only_sequence = false,
     only_setup = false,
     path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/nvim-lspconfig"
+  },
+  ["nvim-tree.lua"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = false,
@@ -80,18 +74,6 @@ local plugins = {
     only_sequence = false,
     only_setup = false,
     path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/vim-which-key"
-  },
-  ["vim-windowswap"] = {
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/vim-windowswap"
-  },
-  winresizer = {
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/ekickx/.local/share/nvim/site/pack/packer/opt/winresizer"
   }
 }
 
