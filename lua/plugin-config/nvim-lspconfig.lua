@@ -26,20 +26,24 @@ lsp_conf.rust_analyzer.setup{
 local sumneko_root = vim.fn.expand('$HOME/Projects/lua-language-server')
 
 lsp_conf.sumneko_lua.setup{
+  on_attach = on_attach,
+  on_init = custom_on_init,
   cmd = {
     sumneko_root .. "/bin/Linux/lua-language-server", "-E",
     sumneko_root .. "/main.lua"
   },
-  runtime = {
-    version = LuaJIT,
-    path = vim.split(package.path, ";")
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+        path = vim.split(package.path, ";")
+      },
+      diagnostics = {
+        enable = true,
+        globals = {'vim', 'use', 'on_attach'}
+      },
+    },
   },
-  diagnostic = {
-    enable = true,
-    globals = {'vim'}
-  },
-  on_attach = on_attach,
-  on_init = custom_on_init,
 }
 
 -- Enable diagnostics

@@ -86,7 +86,13 @@ setmap('n', '<Leader>ql', ':NvimTreeToggle<CR>', { noremap = true })
 setmap('n', '<Leader>qu', ':UndotreeToggle<CR>', { noremap = true })
 
 -- File manager - nnn
-setmap('n', '<leader>f', ':FloatermNew --wintype=floating --width=0.7 --height=0.8 nnn<CR>', { noremap = true })
+setmap('n', '<leader>n', ':FloatermNew --wintype=floating --width=0.7 --height=0.8 nnn<CR>', { noremap = true })
+
+-- Fuzzy finder - Telescope
+-- Find from filename
+setmap('n', '<leader>ff', ':Telescope find_files<CR>', { noremap = true })
+-- Find from context - Live grep
+setmap('n', '<leader>fc', ':Telescope live_grep<CR>', { noremap = true })
 
 -- Float terminal
 -- escape terminal

@@ -23,7 +23,7 @@ let g:which_key_map = {}
 
 " Single mapping
 let g:which_key_map.c = 'Toggle conceal'
-let g:which_key_map.f = 'File manager - nnn'
+let g:which_key_map.n = 'Nnn file manager'
 let g:which_key_map.y = 'Copy to clipboard'
 let g:which_key_map.p = 'Paste from clipboard'
 let g:which_key_map.s = 'Split horizontal(below)'
@@ -40,18 +40,23 @@ let g:which_key_map.9 = 'Buffer-9'
 
 " Group mapping
 "
-" quick action - group for plugin that used quickly
-let g:which_key_map.q = { 'name': '+quick-action' }
-let g:which_key_map.q.c = 'Colorizer'
-let g:which_key_map.q.n = 'NerdTree'
-let g:which_key_map.q.u = 'Undotree'
-"
 " buffer
 let g:which_key_map.b = { 'name': '+buffer' }
 let g:which_key_map.b.b = 'Previously edited'
 let g:which_key_map.b.x = 'Close'
 let g:which_key_map.b.N = 'New'
 let g:which_key_map.b.n = 'Next'
+"
+" fuzzy finder
+let g:which_key_map.f = { 'name': '+fuzzy-finder' }
+let g:which_key_map.f.f = 'From filename'
+let g:which_key_map.f.c = 'From context'
+"
+" quick action - group for plugin that used quickly
+let g:which_key_map.q = { 'name': '+quick-action' }
+let g:which_key_map.q.c = 'Colorizer'
+let g:which_key_map.q.n = 'NerdTree'
+let g:which_key_map.q.u = 'Undotree'
 "
 " terminal
 let g:which_key_map.t = { 'name': '+terminal' }

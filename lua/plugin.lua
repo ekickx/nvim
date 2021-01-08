@@ -38,6 +38,10 @@ return require('packer').startup(function()
   use {'kyazdani42/nvim-tree.lua', opt = true}
   -- float terminal
   use {'voldikss/vim-floaterm', opt = true}
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+  }
 
   -- show keybinding in popup like on doom-emacs
   use {'liuchengxu/vim-which-key', opt = true}
