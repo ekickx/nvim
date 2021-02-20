@@ -24,6 +24,7 @@ local options = {
   ignorecase = true, -- case insensitive on search
   lazyredraw = true, -- lazyredraw to make macro faster
   list = true, -- display listchars
+  linebreak = true, -- make wrap better
   number = true, -- enable number
   noshowmode = true, -- don't show mode because bufferline already handle it
   relativenumber = true, -- enable relativenumber

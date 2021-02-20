@@ -26,7 +26,9 @@ return require('packer').startup(function()
   -- easier commit message
   use 'rhysd/committia.vim'
 
+  -- Cool lua util function, depedency of some plugins
   use 'nvim-lua/plenary.nvim'
+
   -- neovim buil-in lsp config
   use {'neovim/nvim-lspconfig', opt = true}
   -- snippet
@@ -43,6 +45,11 @@ return require('packer').startup(function()
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
 
+  -- Markdown and note taking
+  -- markdown
+  use {'SidOfc/mkdx', opt = true}
+  -- remove distraction
+  use 'junegunn/goyo.vim'
   -- zettelkasten note taking with neuron
   use {'oberblastmeister/neuron.nvim', opt = true}
 
