@@ -7,6 +7,11 @@ local custom_on_init = function()
   print('LSP started!')
 end
 
+-- Bash
+lsp_conf.bashls.setup{
+  on_init = custom_on_init,
+}
+
 -- Go
 lsp_conf.gopls.setup{
   on_attach = on_attach,

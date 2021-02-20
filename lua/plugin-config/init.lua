@@ -1,3 +1,12 @@
+-- Autocompletion
+require('plugin-config.nvim-compe')
+
+-- Bufferline
+require('plugin-config.nvim-bufferline')
+
+-- Built-in lsp config
+require('plugin-config.nvim-lspconfig')
+
 -- Colorizer
 require('plugin-config.nvim-colorizer')
 
