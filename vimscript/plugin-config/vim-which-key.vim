@@ -76,6 +76,16 @@ let g:which_key_map.w.l = 'Move right'
 let g:which_key_map.w.s = 'Split below'
 let g:which_key_map.w.v = 'Split right'
 let g:which_key_map.w.x = 'Close'
+"
+" zettelkasten note with neuron
+let g:which_key_map.z = { 'name': '+zettelkasten' }
+let g:which_key_map.z.N = 'New neuron note'
+let g:which_key_map.z.n = 'Next link'
+let g:which_key_map.z.p = 'Previous link'
+let g:which_key_map.z.f = 'Find/Create note'
+let g:which_key_map.z.b = 'Find all backlinks'
+let g:which_key_map.z.t = 'Find all tags'
+let g:which_key_map.z.s = 'Start server'
 
 " Register which_key_map so the change can take effect
 call which_key#register('<Space>', "g:which_key_map")

@@ -43,6 +43,9 @@ return require('packer').startup(function()
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
 
+  -- zettelkasten note taking with neuron
+  use {'oberblastmeister/neuron.nvim', opt = true}
+
   -- show keybinding in popup like on doom-emacs
   use {'liuchengxu/vim-which-key', opt = true}
   -- for handling sudo in neovim

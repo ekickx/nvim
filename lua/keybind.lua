@@ -1,4 +1,4 @@
-setmap = vim.api.nvim_set_keymap
+local setmap = vim.api.nvim_set_keymap
 
 -- Set leader key
 vim.g.mapleader = " "
@@ -71,6 +71,8 @@ setmap('n', '<Leader>p', '"+p', { noremap = true })
 -- Toggle conceal
 setmap("n", "<Leader>c", ":set <C-R>=&conceallevel ? 'conceallevel=0' : 'conceallevel=1'<CR><CR>", { noremap = true })
 
+--------- Plugin Keybind ----------
+
 -- Commentary
 setmap("n", "'", ":Commentary<CR>", { noremap = true })
 setmap("v", "'", ":Commentary<CR>", { noremap = true })
@@ -109,3 +111,23 @@ setmap('t', "<Leader>tn", "<C-\\><C-n>:FloatermNext<CR>", { noremap = true })
 -- prev term
 setmap('n', '<Leader>tp', ':FloatermPrev<CR>', { noremap = true })
 setmap('t', "<Leader>tp", "<C-\\><C-n>:FloatermPrev<CR>", { noremap = true })
+
+-- Neuron zettelkesten
+-- create a new note
+setmap('n', '<Leader>zN', ":lua require'neuron/cmd'.new_edit(require'neuron'.config.neuron_dir)<CR>", { noremap = true })
+ -- click enter on [[my_link]] or [[[my_link]]] to enter it
+setmap('n', '<CR>', ":lua require'neuron'.enter_link()<CR>", { noremap = true })
+-- go to next [[my_link]] or [[[my_link]]]
+setmap('n', '<Leader>zn', ":lua require'neuron'.goto_next_extmark()<CR>", { noremap = true })
+-- go to previous [[my_link]] or [[[my_link]]]
+setmap('n', '<Leader>zp', ":lua require'neuron'.goto_prev_extmark()<CR>", { noremap = true })
+-- find your notes, click enter to create the note if there are not notes that match
+setmap('n', '<Leader>zf', ":lua require'neuron/telescope'.find_zettels()<CR>", { noremap = true })
+-- insert note's id
+setmap('n', '<Leader>zi', ":lua require'neuron/telescope'.find_zettels{insert = true}<CR>", { noremap = true })
+-- find the backlinks of the current note all the note that link this note
+setmap('n', '<Leader>zb', ":lua require'neuron/telescope'.find_backlinks()<CR>", { noremap = true })
+-- find all tags and insert
+setmap('n', '<Leader>zt', ":lua require'neuron/telescope'.find_tags()<CR>", { noremap = true })
+-- start the neuron server and render markdown, auto reload on save
+setmap('n', '<Leader>zs', ":lua require'neuron'.rib {address = '127.0.0.1:8200', verbose = true}<CR>", { noremap = true })
