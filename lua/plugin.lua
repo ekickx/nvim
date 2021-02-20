@@ -18,6 +18,9 @@ return require('packer').startup(function()
   -- indentline
   use {'Yggdroot/indentLine', opt = true}
 
+  -- treesitter playground
+  use {'nvim-treesitter/playground', opt = true}
+
   -- Git
   -- git wrapper (e.g show branch on statusline)
   use 'tpope/vim-fugitive'
@@ -36,13 +39,15 @@ return require('packer').startup(function()
   -- completition
   use 'hrsh7th/nvim-compe'
 
+  -- better search highlighting
+  use {'kevinhwang91/nvim-hlslens', opt = true}
   -- luatree
   use {'kyazdani42/nvim-tree.lua', opt = true}
   -- float terminal
   use {'voldikss/vim-floaterm', opt = true}
   use {
     'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    requires = {{'nvim-lua/popup.nvim'}}
   }
 
   -- Markdown and note taking

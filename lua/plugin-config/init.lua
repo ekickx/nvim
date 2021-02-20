@@ -28,6 +28,9 @@ require('plugin-config.luatree')
 -- Treesitter for better syntax highlighting
 require('plugin-config.nvim-treesitter')
 
+-- Highlight search
+require('plugin-config.nvim-hlslens')
+
 -- Markdown mkdx
 require('plugin-config.markdown')
 
