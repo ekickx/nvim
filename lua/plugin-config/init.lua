@@ -1,53 +1,103 @@
--- Autocompletion
-require('plugin-config.nvim-compe')
+vim.cmd [[packadd packer.nvim]]
 
--- Bufferline
-require('plugin-config.nvim-bufferline')
+local load_conf = function(file)
+  require('plugin-config.'..file)
+end
 
--- Built-in lsp config
-require('plugin-config.nvim-lspconfig')
+return require('packer').startup(function()
+  -- packer
+  use {'wbthomason/packer.nvim', opt = true}
 
--- Colorizer
-require('plugin-config.nvim-colorizer')
+  -- Interface
+  -- statusline
+  use 'glepnir/galaxyline.nvim'
+  load_conf('galaxyline')
+  -- statusline but on top, for buffer/tab
+  use {'akinsho/nvim-bufferline.lua', opt = true}
+  load_conf('nvim-bufferline')
+  -- look at beauty icons
+  use 'kyazdani42/nvim-web-devicons'
+  -- colorschemes
+  use 'lifepillar/vim-gruvbox8'
+  -- better syntax highlighting
+  use {'nvim-treesitter/nvim-treesitter', opt = true}
+  load_conf('nvim-treesitter')
+  -- indentline
+  use {'Yggdroot/indentLine', opt = true}
+  load_conf('indentLine')
 
--- Indentline
-require('plugin-config.indentLine')
+  -- treesitter playground
+  use {'nvim-treesitter/playground', opt = true}
 
--- Goyo
-require('plugin-config.goyo')
+  -- Git
+  -- git wrapper (e.g show branch on statusline)
+  use 'tpope/vim-fugitive'
+  -- shows git diff sign
+  use {'lewis6991/gitsigns.nvim', opt = true}
+  load_conf('gitsigns')
+  -- easier commit message
+  use 'rhysd/committia.vim'
 
--- Statusline
-require('plugin-config.galaxyline')
+  -- Cool lua util function, depedency of some plugins
+  use 'nvim-lua/plenary.nvim'
 
--- Bufferline
-require('plugin-config.nvim-bufferline')
+  -- neovim buil-in lsp config
+  use {'neovim/nvim-lspconfig', opt = true}
+  load_conf('nvim-lspconfig')
+  -- snippet
+  -- use {'hrsh7th/vim-vsnip', opt = true}
+  -- completition
+  use 'hrsh7th/nvim-compe'
+  load_conf('nvim-compe')
+  -- formatter
+  use {'lukas-reineke/format.nvim', opt = true}
+  -- chnage root dir based on nvim-lspconfig
+  -- use {'oberblastmeister/rooter.nvim', opt = true}
+  -- load_conf('rooter')
 
--- Luatree
-require('plugin-config.luatree')
+  -- better search highlighting
+  use {'kevinhwang91/nvim-hlslens', opt = true}
+  load_conf('nvim-hlslens')
+  -- luatree
+  use {'kyazdani42/nvim-tree.lua', opt = true}
+  load_conf('luatree')
+  -- float terminal
+  use {'voldikss/vim-floaterm', opt = true}
+  load_conf('vim-floaterm')
+  -- nvim telescope
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {{'nvim-lua/popup.nvim'}}
+  }
 
--- Treesitter for better syntax highlighting
-require('plugin-config.nvim-treesitter')
+  -- Markdown and note taking
+  -- markdown
+  use {'SidOfc/mkdx', opt = true}
+  -- remove distraction
+  use 'junegunn/goyo.vim'
+  load_conf('goyo')
+  -- zettelkasten note taking with neuron
+  use {'oberblastmeister/neuron.nvim', opt = true}
+  load_conf('neuron')
 
--- Highlight search
-require('plugin-config.nvim-hlslens')
+  -- show keybinding in popup like on doom-emacs
+  use {'liuchengxu/vim-which-key', opt = true}
+  -- for handling sudo in neovim
+  use 'lambdalisue/suda.vim'
+  -- automatic closing of quotes, parenthesis, brackets, etc.
+  use 'cohama/lexima.vim'
+  -- indent multi text ( easy align : so many feature ), eg: `gaip* `
+  use 'junegunn/vim-easy-align'
+  -- undo tree
+  -- use {'mbbill/undotree', opt = true}
+  -- to comment lines
+  use 'tpope/vim-commentary'
+  -- smooth scrolling
+  use 'psliwka/vim-smoothie'
+  -- show color on color code
+  use {'norcalli/nvim-colorizer.lua', opt = true}
+  load_conf('nvim-colorizer')
 
--- Markdown mkdx
-require('plugin-config.markdown')
-
--- Git changes sign
-require('plugin-config.gitsigns')
-
--- Built-in lsp config
-require('plugin-config.nvim-lspconfig')
-
--- VSCode snippet
--- require('plugin-config.vimvsnip')
-
--- Autocompletion
-require('plugin-config.nvim-compe')
-
--- Float Term
-require('plugin-config.vim-floaterm')
-
--- Zettelkesten neuron
-require('plugin-config.neuron')
+  -- go
+  use {'fatih/vim-go', opt = true}
+end)
