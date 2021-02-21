@@ -64,6 +64,7 @@ setmap('i', '<A-j>', '<Esc>:m .+1<CR>==gi', { noremap = true })
 setmap('i', '<A-k>', '<Esc>:m .-2<CR>==gi', { noremap = true })
 
 -- Yank/copy to clipboard
+setmap('n', '<Leader>y', '"+yy', { noremap = true })
 setmap('v', '<Leader>y', '"+y', { noremap = true })
 -- Paste from clipboard
 setmap('n', '<Leader>p', '"+p', { noremap = true })
@@ -88,7 +89,7 @@ setmap('n', '<Leader>ql', ':NvimTreeToggle<CR>', { noremap = true })
 setmap('n', '<Leader>qu', ':UndotreeToggle<CR>', { noremap = true })
 
 -- File manager - nnn
-setmap('n', '<leader>n', ':FloatermNew --wintype=floating --width=0.7 --height=0.8 nnn<CR>', { noremap = true })
+setmap('n', '<leader>n', ':FloatermNew --wintype=float --width=0.7 --height=0.8 nnn<CR>', { noremap = true })
 
 -- Fuzzy finder - Telescope
 -- Find from filename

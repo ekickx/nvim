@@ -32,32 +32,32 @@ gls.left[1] = {
       local alias = {n = 'NORMAL',
                      i = 'INSERT',
                      v = 'VISUAL',
-                     [''] = 'VISUAL',
+                     [''] = 'VISUAL',
                      V = 'VISUAL',
                      c = 'COMMAND',
                      t = 'TERMINAL'}
-      local mode_color = {n = colors.purple, 
+      local mode_color = {n = colors.purple,
                           i = colors.green,
                           v = colors.blue,
-                          [''] = colors.blue,
+                          [''] = colors.blue,
                           V = colors.blue,
                           c = colors.purple,
                           no = colors.magenta,
                           s = colors.orange,
                           S = colors.orange,
-                          [''] = colors.orange,
+                          [''] = colors.orange,
                           ic = colors.yellow,
                           R = colors.red,
                           Rv = colors.red,
                           cv = colors.red,
-                          ce=colors.red, 
+                          ce=colors.red,
                           r = colors.cyan,
-                          rm = colors.cyan, 
+                          rm = colors.cyan,
                           ['r?'] = colors.cyan,
                           ['!']  = colors.red,
                           t = colors.red}
-      -- vim.api.nvim_command('hi GalaxyViMode guibg='..mode_color[vim.fn.mode()])
-      return alias[vim.fn.mode()]
+      vim.api.nvim_command('hi GalaxyViMode guibg='..mode_color[vim.fn.mode()])
+      return '  '..alias[vim.fn.mode()]..' '
     end,
     separator = ' ',
     separator_highlight = {colors.yellow,function()
@@ -79,19 +79,21 @@ gls.left[2] = {
       local cur_term_idx = vim.fn.index(term_buffer, cur_term_buffer) + 1
       local term_info = '['..cur_term_idx..'/'..total_term..']'
 
-      if total_term ~= 0 and vim.fn.mode() == 't' then 
-        return term_info 
-      else 
+      if total_term ~= 0 and vim.fn.mode() == 't' then
+        return term_info
+      else
         return ''
       end
     end,
-    highlight = {colors.grey,colors.bg} 
+    highlight = {colors.grey,colors.bg}
   }
 }
 
 gls.left[3] = {
   GitIcon = {
-    provider = function() return ' ' end,
+    provider = function()
+      if vim.fn.mode() == 't' then return '' else return ' ' end
+    end,
     condition = require('galaxyline.provider_vcs').check_git_workspace,
     highlight = {colors.orange,colors.bg},
   }

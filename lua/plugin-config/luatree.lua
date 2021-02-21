@@ -1,3 +1,5 @@
+vim.cmd[[packadd nvim-tree.lua]]
+
 vim.g.nvim_tree_side = 'left'
 vim.g.nvim_tree_width = 30
 vim.g.nvim_tree_ignore = {
