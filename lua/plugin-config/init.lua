@@ -44,6 +44,8 @@ return require('packer').startup(function()
   -- neovim buil-in lsp config
   use {'neovim/nvim-lspconfig', opt = true}
   load_conf('nvim-lspconfig')
+  -- better lsp ui
+  use 'glepnir/lspsaga.nvim'
   -- snippet
   -- use {'hrsh7th/vim-vsnip', opt = true}
   -- completition

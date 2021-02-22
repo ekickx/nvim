@@ -20,12 +20,6 @@ cmd('autocmd  FileType which_key set laststatus=0 noshowmode noruler')
 cmd('autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler')
 
 vim.g.which_key_map = {
-  c = 'Toggle conceal',
-  n = 'Nnn file manager',
-  y = 'Copy to clipboard',
-  p = 'Paste from clipboard',
-  s = 'Split horizontal(below)',
-  v = 'Split vertical(right)',
   b = {
     name = '+buffer',
     b = 'Previously edited',
@@ -34,17 +28,36 @@ vim.g.which_key_map = {
     n = 'Next',
     p = 'Prev',
   },
+  c = 'Toggle conceal',
   f = {
     name = '+fuzzy-finder',
     f = 'From filename',
     c = 'From context',
   },
+  l = {
+    name = '+lsp',
+    c = 'Code action',
+    d = {
+      name = '+diagnostic',
+      s = 'Show diagnostic',
+      n = 'Next diagnostic',
+      p = 'Previous diagnostic',
+    },
+    f = 'Find def or ref',
+    h = 'Signature help',
+    p = 'Preview definition',
+    r = 'Rename',
+    s = 'Show hover doc',
+  },
+  n = 'Nnn file manager',
+  p = 'Paste from clipboard',
   q = {
     name = '+quick-action',
     c = 'Colorizer',
     n = 'NerdTree',
     u = 'Undotree',
   },
+  s = 'Split horizontal(below)',
   t = {
     name = '+terminal',
     h = 'Previous',
@@ -54,6 +67,7 @@ vim.g.which_key_map = {
     N = 'New',
     t = 'Toggle',
   },
+  v = 'Split vertical(right)',
   w = {
     name = '+window',
     h = 'Move left',
@@ -64,6 +78,7 @@ vim.g.which_key_map = {
     v = 'Split right',
     x = 'Close',
   },
+  y = 'Copy to clipboard',
   z = {
     name = '+zettelkasten',
     N = 'New neuron note',
@@ -77,14 +92,8 @@ vim.g.which_key_map = {
   }
 }
 
-cmd("let g:which_key_map.1 = 'Buffer-1'")
-cmd("let g:which_key_map.2 = 'Buffer-2'")
-cmd("let g:which_key_map.3 = 'Buffer-3'")
-cmd("let g:which_key_map.4 = 'Buffer-4'")
-cmd("let g:which_key_map.5 = 'Buffer-5'")
-cmd("let g:which_key_map.6 = 'Buffer-6'")
-cmd("let g:which_key_map.7 = 'Buffer-7'")
-cmd("let g:which_key_map.8 = 'Buffer-8'")
-cmd("let g:which_key_map.9 = 'Buffer-9'")
+for i = 1, 9 do
+  cmd("let g:which_key_map."..i.." = 'which_key_ignore'")
+end
 
 fn['which_key#register']('<Space>', "g:which_key_map")

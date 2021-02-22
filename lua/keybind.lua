@@ -10,44 +10,44 @@ setmap('i', '<F5>', ':luafile %<CR>', { noremap = true })
 -- Buffer keys
 
 -- new buffer
-setmap('n', '<leader>bN', ':enew<CR>', { noremap = true})
+setmap('n', '<Leader>bN', ':enew<CR>', { noremap = true})
 -- close/delete buffer
-setmap('n', '<leader>bx', ':bd!<CR>', { noremap = true})
+setmap('n', '<Leader>bx', ':bd!<CR>', { noremap = true})
 
 -- Switch buffer
 -- previously visited buffer
-setmap('n', '<leader>bb', ':b#<CR>', { noremap = true})
+setmap('n', '<Leader>bb', ':b#<CR>', { noremap = true})
 -- next buffer
-setmap('n', '<leader>bn', ':bn<CR>', { noremap = true})
+setmap('n', '<Leader>bn', ':bn<CR>', { noremap = true})
 -- preivous buffer
-setmap('n', '<leader>bp', ':bp<CR>', { noremap = true})
+setmap('n', '<Leader>bp', ':bp<CR>', { noremap = true})
 
 -- Window keys
 
 -- Move between window
 -- move up
 setmap('n', '<C-K>', '<C-W><C-K>', { noremap = true})
-setmap('n', '<leader>wk', '<C-W><C-K>', { noremap = true })
+setmap('n', '<Leader>wk', '<C-W><C-K>', { noremap = true })
 -- move down
 setmap('n', '<C-J>', '<C-W><C-J>', { noremap = true})
-setmap('n', '<leader>wj', '<C-W><C-J>', { noremap = true })
+setmap('n', '<Leader>wj', '<C-W><C-J>', { noremap = true })
 -- move left
 setmap('n', '<C-H>', '<C-W><C-H>', { noremap = true})
-setmap('n', '<leader>wh', '<C-W><C-H>', { noremap = true })
+setmap('n', '<Leader>wh', '<C-W><C-H>', { noremap = true })
 -- move right
 setmap('n', '<C-L>', '<C-W><C-L>', { noremap = true})
-setmap('n', '<leader>wl', '<C-W><C-L>', { noremap = true })
+setmap('n', '<Leader>wl', '<C-W><C-L>', { noremap = true })
 
 -- Split window
 -- horizontal/below split
-setmap('n', '<leader>ws', ':split<CR>', { noremap = true })
-setmap('n', '<leader>s', ':split<CR>', { noremap = true })
+setmap('n', '<Leader>ws', ':split<CR>', { noremap = true })
+setmap('n', '<Leader>s', ':split<CR>', { noremap = true })
 -- vertical/right split
-setmap('n', '<leader>wv', ':vsplit<CR>', { noremap = true })
-setmap('n', '<leader>v', ':vsplit<CR>', { noremap = true })
+setmap('n', '<Leader>wv', ':vsplit<CR>', { noremap = true })
+setmap('n', '<Leader>v', ':vsplit<CR>', { noremap = true })
 
 -- close window
-setmap('n', '<leader>wx' , ':close<CR>', { noremap = true })
+setmap('n', '<Leader>wx' , ':close<CR>', { noremap = true })
 
 -- Move line/s
 setmap('n', '<A-j>', ':m .+1<CR>==', { noremap = true })
@@ -83,13 +83,13 @@ setmap('n', '<Leader>ql', ':NvimTreeToggle<CR>', { noremap = true })
 setmap('n', '<Leader>qu', ':UndotreeToggle<CR>', { noremap = true })
 
 -- File manager - nnn
-setmap('n', '<leader>n', ':FloatermNew --wintype=float --width=0.7 --height=0.8 nnn<CR>', { noremap = true })
+setmap('n', '<Leader>n', ':FloatermNew --wintype=float --width=0.7 --height=0.8 nnn<CR>', { noremap = true })
 
 -- Fuzzy finder - Telescope
 -- Find from filename
-setmap('n', '<leader>ff', ':Telescope find_files<CR>', { noremap = true })
+setmap('n', '<Leader>ff', ':Telescope find_files<CR>', { noremap = true })
 -- Find from context - Live grep
-setmap('n', '<leader>fc', ':Telescope live_grep<CR>', { noremap = true })
+setmap('n', '<Leader>fc', ':Telescope live_grep<CR>', { noremap = true })
 
 -- Float terminal
 -- escape terminal
@@ -106,6 +106,27 @@ setmap('t', "<Leader>tn", "<C-\\><C-n>:FloatermNext<CR>", { noremap = true })
 -- prev term
 setmap('n', '<Leader>tp', ':FloatermPrev<CR>', { noremap = true })
 setmap('t', "<Leader>tp", "<C-\\><C-n>:FloatermPrev<CR>", { noremap = true })
+
+-- LSP
+-- code action
+setmap('n', '<Leader>lc', ":Lspsaga code_action<CR>", { noremap = true })
+setmap('v', '<Leader>lc', ":<C-U>Lspsaga code_action<CR>", { noremap = true })
+-- show diagnostic
+setmap('n', '<Leader>lds', ":Lspsaga show_line_diagnostics<CR>", { noremap = true })
+-- jump to next diagnostic
+setmap('n', '<Leader>ldn', ":Lspsaga diagnostic_jump_next<CR>", { noremap = true })
+-- jump to prev diagnostic
+setmap('n', '<Leader>ldp', ":Lspsaga diagnostic_jump_prev<CR>", { noremap = true })
+-- find definition and reference
+setmap('n', '<Leader>lf', ":Lspsaga lsp_finder<CR>", { noremap = true })
+-- show hover doc
+setmap('n', '<Leader>lh', ":Lspsaga hover_doc<CR>", { noremap = true })
+-- preview definition
+setmap('n', '<Leader>lp', ":Lspsaga preview_definition<CR>", { noremap = true })
+-- rename var, func, etc
+setmap('n', '<Leader>lr', ":Lspsaga rename<CR>", { noremap = true })
+-- signature help / parameter info
+setmap('n', '<Leader>ls', ":Lspsaga signature_help<CR>", { noremap = true })
 
 -- Neuron zettelkesten
 -- create a new note
