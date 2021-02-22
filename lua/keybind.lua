@@ -24,9 +24,6 @@ setmap('n', '<leader>bp', ':bp<CR>', { noremap = true})
 
 -- Window keys
 
--- enter resize mode
-vim.g.winresizer_start_key = '<leader>wR'
-
 -- Move between window
 -- move up
 setmap('n', '<C-K>', '<C-W><C-K>', { noremap = true})
@@ -48,9 +45,6 @@ setmap('n', '<leader>s', ':split<CR>', { noremap = true })
 -- vertical/right split
 setmap('n', '<leader>wv', ':vsplit<CR>', { noremap = true })
 setmap('n', '<leader>v', ':vsplit<CR>', { noremap = true })
-
--- swap window
-setmap('n', '<leader>wS', ':call WindowSwap#EasyWindowSwap()<CR>', { noremap = true, silent = true})
 
 -- close window
 setmap('n', '<leader>wx' , ':close<CR>', { noremap = true })

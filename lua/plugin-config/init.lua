@@ -82,6 +82,7 @@ return require('packer').startup(function()
 
   -- show keybinding in popup like on doom-emacs
   use {'liuchengxu/vim-which-key', opt = true}
+  load_conf('which-key')
   -- for handling sudo in neovim
   use 'lambdalisue/suda.vim'
   -- automatic closing of quotes, parenthesis, brackets, etc.
