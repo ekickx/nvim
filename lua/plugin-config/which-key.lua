@@ -34,6 +34,18 @@ vim.g.which_key_map = {
     f = 'From filename',
     c = 'From context',
   },
+  g = {
+    name = '+git',
+    A = 'Add all',
+    a = 'Add current',
+    b = 'Switch branch',
+    c = 'Commit',
+    l = 'Show Log',
+    s = 'Status',
+    P = 'Pull',
+    p = 'Push',
+    v = 'Vertical diffsplit'
+  },
   l = {
     name = '+lsp',
     c = 'Code action',

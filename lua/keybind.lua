@@ -107,6 +107,26 @@ setmap('t', "<Leader>tn", "<C-\\><C-n>:FloatermNext<CR>", { noremap = true })
 setmap('n', '<Leader>tp', ':FloatermPrev<CR>', { noremap = true })
 setmap('t', "<Leader>tp", "<C-\\><C-n>:FloatermPrev<CR>", { noremap = true })
 
+-- Git
+-- Add current file
+setmap('n', '<Leader>ga', ":Gwrite", { noremap = true })
+-- Add all
+setmap('n', '<Leader>gA', ":G add .<CR>", { noremap = true })
+-- switch branch
+setmap('n', '<Leader>gb', ":lua require'telescope.builtin'.git_branches()", { noremap = true })
+-- commit
+setmap('n', '<Leader>gc', ":Gcommit -v<CR>", { noremap = true })
+-- show git log
+setmap('n', '<Leader>gl', ":G log -p<CR>", { noremap = true })
+-- git status
+setmap('n', '<Leader>gs', ":Gstatus<CR>", { noremap = true })
+-- git pull
+setmap('n', '<Leader>gP', ":G pull<Space>", { noremap = true })
+-- git push
+setmap('n', '<Leader>gp', ":G push<CR>", { noremap = true })
+-- fugitive diff vertical split
+setmap('n', '<Leader>gv', ":Gvdiffsplit<CR>", { noremap = true })
+
 -- LSP
 -- code action
 setmap('n', '<Leader>lc', ":Lspsaga code_action<CR>", { noremap = true })
