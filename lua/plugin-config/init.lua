@@ -47,9 +47,9 @@ return require('packer').startup(function()
   -- better lsp ui
   use 'glepnir/lspsaga.nvim'
   -- snippet
-  -- use {'hrsh7th/vim-vsnip', opt = true}
+  use 'hrsh7th/vim-vsnip'
   -- completition
-  use 'hrsh7th/nvim-compe'
+  use {'hrsh7th/nvim-compe', opt = true}
   load_conf('nvim-compe')
   -- formatter
   use {'lukas-reineke/format.nvim', opt = true}

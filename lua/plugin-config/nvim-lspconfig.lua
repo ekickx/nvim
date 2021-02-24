@@ -2,6 +2,9 @@ vim.cmd[[packadd nvim-lspconfig]]
 
 local lsp_conf = require('lspconfig')
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 -- Show message when lsp start
 local custom_on_init = function()
   print('LSP started!')
@@ -23,6 +26,7 @@ lsp_conf.gopls.setup{
 lsp_conf.rust_analyzer.setup{
   on_attach = on_attach,
   on_init = custom_on_init,
+  capabilities = capabilities,
 }
 
 -- Lua
