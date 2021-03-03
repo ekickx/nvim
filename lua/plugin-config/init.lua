@@ -1,7 +1,15 @@
 vim.cmd [[packadd packer.nvim]]
 
-local load_conf = function(file)
-  require('plugin-config.'..file)
+local confs = {}
+
+local add_conf = function (config)
+  table.insert(confs, config)
+end
+
+local load_conf = function(configs)
+  for key in ipairs(configs) do
+    require('plugin-config.'..configs[key])
+  end
 end
 
 return require('packer').startup(function()
@@ -11,20 +19,22 @@ return require('packer').startup(function()
   -- Interface
   -- statusline
   use 'glepnir/galaxyline.nvim'
-  load_conf('galaxyline')
+  add_conf('galaxyline')
   -- statusline but on top, for buffer/tab
   use {'akinsho/nvim-bufferline.lua', opt = true}
-  load_conf('nvim-bufferline')
+  add_conf('nvim-bufferline')
   -- look at beauty icons
   use 'kyazdani42/nvim-web-devicons'
   -- colorschemes
   use 'lifepillar/vim-gruvbox8'
   -- better syntax highlighting
   use {'nvim-treesitter/nvim-treesitter', opt = true}
-  load_conf('nvim-treesitter')
+  add_conf('nvim-treesitter')
+  -- rainbow parenthesis with treesitter
+  use 'p00f/nvim-ts-rainbow'
   -- indentline
   use {'Yggdroot/indentLine', opt = true}
-  load_conf('indentLine')
+  add_conf('indentLine')
 
   -- treesitter playground
   use {'nvim-treesitter/playground', opt = true}
@@ -34,42 +44,46 @@ return require('packer').startup(function()
   use 'tpope/vim-fugitive'
   -- shows git diff sign
   use {'lewis6991/gitsigns.nvim', opt = true}
-  load_conf('gitsigns')
-  -- easier commit message
-  use 'rhysd/committia.vim'
+  add_conf('gitsigns')
 
   -- Cool lua util function, depedency of some plugins
   use 'nvim-lua/plenary.nvim'
 
   -- neovim buil-in lsp config
   use {'neovim/nvim-lspconfig', opt = true}
-  load_conf('nvim-lspconfig')
+  add_conf('nvim-lspconfig')
   -- better lsp ui
   use 'glepnir/lspsaga.nvim'
   -- snippet
   use 'hrsh7th/vim-vsnip'
   -- completition
   use {'hrsh7th/nvim-compe', opt = true}
-  load_conf('nvim-compe')
+  add_conf('nvim-compe')
   -- formatter
   use {'lukas-reineke/format.nvim', opt = true}
   -- chnage root dir based on nvim-lspconfig
   -- use {'oberblastmeister/rooter.nvim', opt = true}
-  -- load_conf('rooter')
+  -- add_conf('rooter')
 
   -- better search highlighting
   use {'kevinhwang91/nvim-hlslens', opt = true}
-  load_conf('nvim-hlslens')
+  add_conf('nvim-hlslens')
   -- luatree
   use {'kyazdani42/nvim-tree.lua', opt = true}
-  load_conf('luatree')
+  add_conf('luatree')
   -- float terminal
   use {'voldikss/vim-floaterm', opt = true}
-  load_conf('vim-floaterm')
+  add_conf('vim-floaterm')
   -- nvim telescope
   use {
     'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/popup.nvim'}}
+    requires = {
+      'nvim-lua/popup.nvim',
+      'nvim-telescope/telescope-z.nvim',
+    },
+    config = function()
+      require'telescope'.load_extension'z'
+    end,
   }
 
   -- Markdown and note taking
@@ -77,14 +91,16 @@ return require('packer').startup(function()
   use {'SidOfc/mkdx', opt = true}
   -- remove distraction
   use 'junegunn/goyo.vim'
-  load_conf('goyo')
+  add_conf('goyo')
   -- zettelkasten note taking with neuron
   use {'oberblastmeister/neuron.nvim', opt = true}
-  load_conf('neuron')
+  add_conf('neuron')
 
+  -- paste image from clipboard
+  use 'ekickx/clipboard-image.nvim'
   -- show keybinding in popup like on doom-emacs
   use {'liuchengxu/vim-which-key', opt = true}
-  load_conf('which-key')
+  add_conf('which-key')
   -- for handling sudo in neovim
   use 'lambdalisue/suda.vim'
   -- automatic closing of quotes, parenthesis, brackets, etc.
@@ -99,8 +115,11 @@ return require('packer').startup(function()
   use 'psliwka/vim-smoothie'
   -- show color on color code
   use {'norcalli/nvim-colorizer.lua', opt = true}
-  load_conf('nvim-colorizer')
+  add_conf('nvim-colorizer')
 
   -- go
   use {'fatih/vim-go', opt = true}
+
+  -- Load conf
+  load_conf(confs)
 end)
