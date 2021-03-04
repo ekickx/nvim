@@ -1,5 +1,4 @@
-vim.cmd [[packadd packer.nvim]]
-
+local fn, cmd = vim.fn, vim.cmd
 local confs = {}
 
 local add_conf = function (config)
@@ -11,6 +10,13 @@ local load_conf = function(configs)
     require('plugin-config.'..configs[key])
   end
 end
+
+-- Install packer.nvim if doesn't exist
+local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  cmd('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
+end
+cmd[[packadd packer.nvim]]
 
 return require('packer').startup(function()
   -- packer
