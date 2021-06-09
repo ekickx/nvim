@@ -1,4 +1,4 @@
-require('appearance')
-require('keybind')
-require('setting')
-require('plugin-config')
+require('generals._appearance')
+require('generals._keybind')
+require('generals._setting')
+require('plugins')

@@ -9,4 +9,5 @@ require'gitsigns'.setup {
     changedelete = {hl = 'SignChange', text = '┃'},
   },
   sign_priority = 5,
+  keymaps = {},
 }

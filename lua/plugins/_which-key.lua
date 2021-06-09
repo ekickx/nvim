@@ -46,6 +46,14 @@ vim.g.which_key_map = {
     p = 'Push',
     v = 'Vertical diffsplit'
   },
+  h = {
+    name = '+hop',
+    c = 'Char1',
+    C = 'Char2',
+    l = 'Line',
+    p = 'Pattern',
+    w = 'Word',
+  },
   l = {
     name = '+lsp',
     c = 'Code action',

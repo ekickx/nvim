@@ -124,6 +124,13 @@ setmap('n', '<Leader>gp', ":G push<CR>", { noremap = true })
 -- fugitive diff vertical split
 setmap('n', '<Leader>gv', ":Gvdiffsplit<CR>", { noremap = true })
 
+-- Hop.nvim
+setmap('n', '<Leader>hc', ":HopChar1<CR>", { noremap = true })
+setmap('n', '<Leader>hC', ":HopChar2<CR>", { noremap = true })
+setmap('n', '<Leader>hl', ":HopLine<CR>", { noremap = true })
+setmap('n', '<Leader>hp', ":HopPattern<CR>", { noremap = true })
+setmap('n', '<Leader>hw', ":HopWord<CR>", { noremap = true })
+
 -- LSP
 -- code action
 setmap('n', '<Leader>lc', ":Lspsaga code_action<CR>", { noremap = true })
@@ -148,8 +155,8 @@ setmap('n', '<Leader>ls', ":Lspsaga signature_help<CR>", { noremap = true })
 -- Neuron zettelkesten
 -- create a new note
 setmap('n', '<Leader>zN', ":lua require'neuron/cmd'.new_edit(require'neuron'.config.neuron_dir)<CR>", { noremap = true })
- -- click enter on [[my_link]] or [[[my_link]]] to enter it
-setmap('n', '<CR>', ":lua require'neuron'.enter_link()<CR>", { noremap = true })
+-- click enter on [[my_link]] or [[[my_link]]] to enter it
+-- setmap('n', '<CR>', ":lua require'neuron'.enter_link()<CR>", { noremap = true })
 -- go to next [[my_link]] or [[[my_link]]]
 setmap('n', '<Leader>zn', ":lua require'neuron'.goto_next_extmark()<CR>", { noremap = true })
 -- go to previous [[my_link]] or [[[my_link]]]
@@ -171,45 +178,4 @@ setmap("c", "w!!", ":w suda://% <CR>", { noremap = false })
 -- Vim-vsnip and Nvim-compe
 vim.fn['lexima#set_default_rules']()
 
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        return true
-    else
-        return false
-    end
-end
-
--- Use (s-)tab to:
---- move to prev/next item in completion menuone
---- jump to prev/next snippet's placeholder
-_G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-n>"
-  elseif vim.fn.call("vsnip#available", {1}) == 1 then
-    return t "<Plug>(vsnip-expand-or-jump)"
-  elseif check_back_space() then
-    return t "<Tab>"
-  else
-    return vim.fn['compe#complete']()
-  end
-end
-_G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-p>"
-  elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-    return t "<Plug>(vsnip-jump-prev)"
-  else
-    return t "<S-Tab>"
-  end
-end
-
-setmap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-setmap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-setmap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-setmap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 setmap('i', '<CR>', "compe#confirm(lexima#expand('<LT>CR>', 'i'))", { noremap = true, silent = true, expr = true })
