@@ -19,13 +19,13 @@ local colors = {
 }
 
 local buffer_not_empty = function()
-  if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
+  if Fn.empty(Fn.expand('%:t')) ~= 1 then
     return true
   end
   return false
 end
 
-gls.left[1] = {
+table.insert(gls.left, {
   ViMode = {
     provider = function()
       -- auto change color according the vim mode
@@ -56,8 +56,8 @@ gls.left[1] = {
                           ['r?'] = colors.cyan,
                           ['!']  = colors.red,
                           t = colors.red}
-      vim.api.nvim_command('hi GalaxyViMode guibg='..mode_color[vim.fn.mode()])
-      return '  '..alias[vim.fn.mode()]..' '
+      vim.api.nvim_command('hi GalaxyViMode guibg='..mode_color[Fn.mode()])
+      return '  '..alias[Fn.mode()]..' '
     end,
     separator = ' ',
     separator_highlight = {colors.yellow,function()
@@ -68,37 +68,18 @@ gls.left[1] = {
     end},
     highlight = {colors.grey,colors.bg,'bold'},
   },
-}
+})
 
-gls.left[2] = {
-  TermInfo = {
-    provider = function()
-      local term_buffer = vim.fn['floaterm#buflist#gather']()
-      local total_term = vim.fn.len(term_buffer)
-      local cur_term_buffer = vim.fn['floaterm#buflist#curr']()
-      local cur_term_idx = vim.fn.index(term_buffer, cur_term_buffer) + 1
-      local term_info = '['..cur_term_idx..'/'..total_term..']'
-
-      if total_term ~= 0 and vim.fn.mode() == 't' then
-        return term_info
-      else
-        return ''
-      end
-    end,
-    highlight = {colors.grey,colors.bg}
-  }
-}
-
-gls.left[3] = {
+table.insert(gls.left, {
   GitIcon = {
     provider = function()
-      if vim.fn.mode() == 't' then return '' else return ' ' end
+      if Fn.mode() == 't' then return '' else return ' ' end
     end,
     condition = require('galaxyline.provider_vcs').check_git_workspace,
     highlight = {colors.orange,colors.bg},
   }
-}
-gls.left[4] = {
+})
+table.insert(gls.left, {
   GitBranch = {
     provider = 'GitBranch',
     separator = ' ',
@@ -106,17 +87,17 @@ gls.left[4] = {
     condition = buffer_not_empty,
     highlight = {colors.grey,colors.bg},
   }
-}
+})
 
 local checkwidth = function()
-  local squeeze_width  = vim.fn.winwidth(0) / 2
+  local squeeze_width  = Fn.winwidth(0) / 2
   if squeeze_width > 40 then
     return true
   end
   return false
 end
 
-gls.left[5] = {
+table.insert(gls.left, {
   DiffAdd = {
     provider = 'DiffAdd',
     condition = checkwidth,
@@ -125,8 +106,8 @@ gls.left[5] = {
     icon = '  ',
     highlight = {colors.green,colors.bg},
   }
-}
-gls.left[6] = {
+})
+table.insert(gls.left, {
   DiffModified = {
     provider = 'DiffModified',
     condition = checkwidth,
@@ -135,8 +116,8 @@ gls.left[6] = {
     icon = '  ',
     highlight = {colors.blue,colors.bg},
   }
-}
-gls.left[7] = {
+})
+table.insert(gls.left, {
   DiffRemove = {
     provider = 'DiffRemove',
     condition = checkwidth,
@@ -145,48 +126,48 @@ gls.left[7] = {
     icon = '  ',
     highlight = {colors.red,colors.bg},
   }
-}
-gls.left[8] = {
+})
+table.insert(gls.left, {
   LeftEnd = {
     provider = function() return ' ' end,
     separator = ' ',
     separator_highlight = {colors.purple,colors.bg},
     highlight = {colors.purple,colors.bg}
   }
-}
-gls.left[9] = {
+})
+table.insert(gls.left, {
   DiagnosticError = {
     provider = 'DiagnosticError',
     icon = '  ',
     highlight = {colors.red,colors.bg}
   }
-}
-gls.left[10] = {
+})
+table.insert(gls.left, {
   Space = {
     provider = function () return '' end
   }
-}
-gls.left[11] = {
+})
+table.insert(gls.left, {
   DiagnosticWarn = {
     provider = 'DiagnosticWarn',
     icon = '  ',
     highlight = {colors.yellow,colors.bg},
   }
-}
-gls.left[12] = {
+})
+table.insert(gls.left, {
   DiagnosticHint = {
     provider = 'DiagnosticHint',
     icon = '   ',
     highlight = {colors.blue,colors.bg},
   }
-}
-gls.left[13] = {
+})
+table.insert(gls.left, {
   DiagnosticInfo = {
     provider = 'DiagnosticInfo',
     icon = '   ',
     highlight = {colors.orange,colors.bg},
   }
-}
+})
 gls.right[1]= {
   FileFormat = {
     provider = 'FileFormat',

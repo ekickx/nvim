@@ -1,149 +1,228 @@
-local fn, cmd = vim.fn, vim.cmd
-local confs = {}
+local load_conf = function (conf) return "require'plugins."..conf.."'" end
 
--- Add config to confs table
-local add_conf = function (config)
-  table.insert(confs, config)
-end
-
--- Load all config in confs table
-local load_conf = function(configs)
-  for key in ipairs(configs) do
-    require('plugins.'..configs[key])
-  end
-end
-
--- Install packer.nvim if doesn't exist
-local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  cmd('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
-end
-
-cmd[[packadd packer.nvim]]
-
-return require('packer').startup(function(use)
+local plugins = {
   -- Packer
-  use {'wbthomason/packer.nvim', opt = true}
-  use 'tweekmonster/startuptime.vim'
+  {'wbthomason/packer.nvim', opt = true},
+  {'tweekmonster/startuptime.vim', cmd = 'StartupTime'},
 
   ---------------------------------
   -- Dependant
   ---------------------------------
-  use 'nvim-lua/plenary.nvim'
+  'nvim-lua/plenary.nvim',
   -- Vim Popup API on Neovim
-  use 'nvim-lua/popup.nvim'
+  'nvim-lua/popup.nvim',
 
   ---------------------------------
   -- Interface
   ---------------------------------
-  -- Statusline
-  use 'glepnir/galaxyline.nvim'
-  add_conf('_galaxyline')
-  -- Statusline but on top, for buffer/tab
-  use {'akinsho/nvim-bufferline.lua', opt = true}
-  add_conf('_bufferline')
-  -- Look at beauty icons
-  use 'kyazdani42/nvim-web-devicons'
   -- Colorschemes
-  use 'lifepillar/vim-gruvbox8'
+  {
+    'RRethy/nvim-base16', event = 'VimEnter',
+    config = load_conf 'ui._base16',
+  },
+
+  -- Statusline
+  {
+    'glepnir/galaxyline.nvim', after = 'nvim-base16',
+    config = load_conf 'ui._galaxyline',
+  },
+
+  -- Statusline but on top, for buffer/tab
+  {
+    'akinsho/nvim-bufferline.lua', after = 'nvim-base16',
+    config = load_conf 'ui._bufferline',
+  },
+
+  -- Interactive scrollbar
+  {
+    'dstein64/nvim-scrollview', after = 'nvim-base16',
+    config = 'vim.cmd[[packadd! nvim-scrollview]]'
+  },
+
+  -- Icons
+  {'kyazdani42/nvim-web-devicons', cmd = 'NvimTreeToggle'},
+
   -- Indentline
-  use {'Yggdroot/indentLine', opt = true}
-  add_conf('_indentLine')
+  -- {
+  --   'lukas-reineke/indent-blankline.nvim', branch = 'lua',
+  -- },
+
+  -- Better search highlighting
+  {
+    'kevinhwang91/nvim-hlslens', keys = '/',
+    config = load_conf 'ui._hlslens',
+  },
+
+  -- Remove distraction
+  {
+    'junegunn/goyo.vim', cmd = 'Goyo',
+    config = load_conf 'ui._goyo',
+  },
+
+  -- Show keybinding in popup like on doom-emacs
+  {
+    'folke/which-key.nvim', event = 'VimEnter',
+    config = load_conf 'ui._which-key'
+  },
+
+  ---------------------------------
+  -- For Fun
+  ---------------------------------
+  -- Discord rich presence
+  {'andweeb/presence.nvim', event = 'CursorMoved'},
 
   ---------------------------------
   -- LSP
   ---------------------------------
-  add_conf('lsp')
-  -- Manage lsp installation
-  use {'kabouzeid/nvim-lspinstall', opt = true}
+
   -- Neovim buil-in lsp config
-  use {'neovim/nvim-lspconfig', opt = true}
-  -- Better lsp ui
-  use {'glepnir/lspsaga.nvim', opt = true}
+  {
+    'neovim/nvim-lspconfig',
+    event = 'BufRead',
+    config = load_conf 'lsp',
+    requires = {
+      -- Manage lsp installation
+      {'kabouzeid/nvim-lspinstall', after = 'nvim-lspconfig'},
 
-  -- Snippet
-  use 'hrsh7th/vim-vsnip'
-  -- Completition
-  use {'hrsh7th/nvim-compe', opt = true}
-  add_conf('_completion')
-  -- Formatter
-  use {'lukas-reineke/format.nvim', opt = true}
+      -- Better lsp ui
+      {'glepnir/lspsaga.nvim', keys = '<Leader>l'},
+    }
+  },
 
   ---------------------------------
   -- Telescope
   ---------------------------------
   -- Telescope
-  use 'nvim-telescope/telescope.nvim'
-  -- Show cheatsheet
-  use 'sudormrfbin/cheatsheet.nvim'
+  {
+    'nvim-telescope/telescope.nvim', keys = '<Leader>f',
+    config = load_conf 'telescope',
+    requires = {
+      {'nvim-telescope/telescope-media-files.nvim', after = 'telescope.nvim'},
+    },
+  },
 
   ---------------------------------
   --
   -- Editing Support
   --
   ---------------------------------
-  -- Parenthesis
-  use 'machakann/vim-sandwich'
-  -- Better navigation
-  use 'phaazon/hop.nvim'
+  -- Snippet
+  {'hrsh7th/vim-vsnip', opt = true},
+
+  -- Completition
+  {
+    'hrsh7th/nvim-compe', event = 'InsertEnter',
+    config = load_conf '_completion',
+  },
+
+  -- Formatter
+  {'lukas-reineke/format.nvim', opt = true},
+
   -- Automatic closing of quotes, parenthesis, brackets, etc.
-  use 'cohama/lexima.vim'
+  {
+    'steelsojka/pears.nvim', after = 'nvim-compe',
+    config = load_conf '_pears',
+  },
+
+  -- Easier way to modify pairs (brackets, parenthesis, etc)
+  {'machakann/vim-sandwich', keys = 's'},
+
+  -- Better navigate matching text (like pairs)
+  {'andymass/vim-matchup', event = 'CursorMoved'},
+
+  -- Better navigation
+  {
+    'phaazon/hop.nvim', keys = '<Leader>j',
+  },
+  -- {
+  --   'ggandor/lightspeed.nvim', keys = '<Leader>j',
+  --   config = load_conf '_lightspeed'
+  -- },
+
   -- Indent multi text ( easy align : so many feature ), eg: `gaip* `
-  use 'junegunn/vim-easy-align'
-  -- Manage abbrevation and/or spelling
-  use {'Pocco81/AbbrevMan.nvim', opt = true}
+  {'junegunn/vim-easy-align', keys = '<Plug>(EasyAlign)'},
+
+  -- Switch between single line and multiline
+  {'AndrewRadev/splitjoin.vim', cmd = {'SplitjoinSplit', 'SplitjoinJoin'}},
+
   -- Comment lines
-  use 'tpope/vim-commentary'
-  -- Smooth scrolling
-  use 'psliwka/vim-smoothie'
-  -- Virtual text of current context
-  use 'haringsrob/nvim_context_vt'
+  {
+    'tpope/vim-commentary', keys = {'\'', 'gc'},
+    config = load_conf '_commentary'
+  },
+
   ---------------------------------
   -- Treesitter
   ---------------------------------
   -- Better syntax highlighting
-  use {'nvim-treesitter/nvim-treesitter', opt = true}
-  add_conf'_treesitter'
-  -- Rainbow parenthesis with treesitter
-  use 'p00f/nvim-ts-rainbow'
-  -- Treesitter playground
-  use {'nvim-treesitter/playground', opt = true}
+  {
+    'nvim-treesitter/nvim-treesitter', event = 'BufRead',
+    config = load_conf '_treesitter',
+    requires = {
+      -- Context aware comment, usefull in case like html code inside js
+      {'JoosepAlviste/nvim-ts-context-commentstring', after = 'vim-commentary'},
+    }
+  },
+
+  -- Virtual text of current context
+  -- {
+  --   'code-biscuits/nvim-biscuits', after = 'nvim-treesitter',
+  --   config = load_conf '_biscuits'
+  -- },
 
   ---------------------------------
   -- Git
   ---------------------------------
   -- Magit but neovim
-  use {'TimUntersberger/neogit', opt = true}
+  {
+    'TimUntersberger/neogit', keys = '<Leader>g',
+    config = 'vim.cmd[[neogit]]',
+  },
+
   -- Shows git diff sign
-  use {'lewis6991/gitsigns.nvim', opt = true}
-  add_conf('git._gitsigns')
+  {
+    'lewis6991/gitsigns.nvim', event = 'BufRead',
+    config = load_conf 'git._gitsigns',
+  },
 
   ---------------------------------
   -- Other Utility
   ---------------------------------
   -- For handling sudo in neovim
-  use 'lambdalisue/suda.vim'
+  {
+    'lambdalisue/suda.vim', keys = '<Leader>fs',
+    config = function ()
+      Map_n {"<Leader>fs", ":w suda://% <CR>"}
+    end
+  },
   ---------------------------------
+
   -- Paste image from clipboard (my plugin: ekickx/clipboard-image.nvim)
-  use '~/Projects/clipboard-image.nvim'
-  add_conf('_clipboard-image')
+  {
+    '~/Projects/clipboard-image.nvim', cmd = 'PasteImage',
+    config = load_conf '_clipboard-image',
+  },
+
   -- Show color on color code
-  use {'norcalli/nvim-colorizer.lua', opt = true}
-  add_conf('_colorizer')
-  -- Better search highlighting
-  use {'kevinhwang91/nvim-hlslens', opt = true}
-  add_conf('_hlslens')
-  ---------------------------------
-  -- Show keybinding in popup like on doom-emacs
-  use {'liuchengxu/vim-which-key', opt = true}
-  add_conf('_which-key')
-  ---------------------------------
+  {
+    'norcalli/nvim-colorizer.lua', keys = '<Leader>tc',
+    config = function ()
+      require 'colorizer'.setup()
+      Map_n {'<Leader>tc', ':ColorizerToggle<CR>'}
+    end
+  },
+
+  -- Smooth scrolling
+  {'psliwka/vim-smoothie', event = 'BufRead'},
+
   -- Tree explorer
-  use {'kyazdani42/nvim-tree.lua', opt = true}
-  add_conf('_luatree')
+  {'kyazdani42/nvim-tree.lua', keys = '<Leader>tT', config = load_conf '_luatree'},
+
   -- Float terminal
-  use {'voldikss/vim-floaterm', opt = true}
-  add_conf('_terminal')
+  {
+    'voldikss/vim-floaterm', keys = {'<Leader>t', '<Leader>T'},
+    config = load_conf '_terminal'
+  },
 
   ---------------------------------
   --
@@ -152,18 +231,59 @@ return require('packer').startup(function(use)
   ---------------------------------
   -- Go
   ---------------------------------
-  use {'fatih/vim-go', opt = true}
+  {
+    'fatih/vim-go', ft = 'go',
+    config = 'vim.cmd[[packadd! vim-go]]',
+  },
+  ---------------------------------
+  -- Lisp
+  ---------------------------------
+  {
+    'eraserhd/parinfer-rust', run = 'cargo build --release',
+    ft = {
+      'fennel', 'clojure', 'scheme', 'lisp', 'racket', 'hy', 'janet', 'carp',
+      'wast',
+    },
+    config = function () vim.cmd[[packadd! parinfer-rust]] end
+  },
   ---------------------------------
   -- Markdown and note taking
   ---------------------------------
   -- Adds some nice extra's for working with markdown
-  use {'SidOfc/mkdx', opt = true}
-  -- Markdown previewer
-  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install'}
-  -- Remove distraction
-  use 'junegunn/goyo.vim'
-  add_conf('_goyo')
+  {
+    'SidOfc/mkdx', ft = 'markdown',
+  },
 
-  -- Load conf
-  load_conf(confs)
+  -- Markdown previewer
+  {
+    'iamcco/markdown-preview.nvim',
+    run = 'cd app && yarn install',
+    ft = 'markdown',
+  },
+  ---------------------------------
+  -- Webdev
+  ---------------------------------
+  -- Emmet
+  {
+   'mattn/emmet-vim', ft = {'html', 'css', 'js', 'svelte'},
+   setup = function ()
+     vim.g.user_emmet_leader_key = ","
+   end
+  },
+}
+
+-- Install packer.nvim if doesn't exist
+local install_path = Fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+if Fn.empty(Fn.glob(install_path)) > 0 then
+  Cmd('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
+end
+
+-- Load packer
+Cmd[[packadd! packer.nvim]]
+
+-- Run packer
+return require('packer').startup(function(use)
+  for _, plugin in pairs(plugins) do
+    use(plugin)
+  end
 end)
