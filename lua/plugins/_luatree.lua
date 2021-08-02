@@ -1,7 +1,7 @@
 vim.cmd[[packadd nvim-tree.lua]]
 
 local setmap = vim.api.nvim_set_keymap
-setmap('n', '<Leader>tT', ':NvimTreeToggle<CR>', { noremap = true })
+setmap('n', '<Leader>TT', ':NvimTreeToggle<CR>', { noremap = true })
 
 vim.g.nvim_tree_side = 'left'
 vim.g.nvim_tree_width = 30

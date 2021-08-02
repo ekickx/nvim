@@ -36,16 +36,16 @@ local plugins = {
   -- Interactive scrollbar
   {
     'dstein64/nvim-scrollview', after = 'nvim-base16',
-    config = 'vim.cmd[[packadd! nvim-scrollview]]'
   },
 
   -- Icons
-  {'kyazdani42/nvim-web-devicons', cmd = 'NvimTreeToggle'},
+  {'kyazdani42/nvim-web-devicons', after = 'nvim-base16'},
 
   -- Indentline
-  -- {
-  --   'lukas-reineke/indent-blankline.nvim', branch = 'lua',
-  -- },
+  {
+    'lukas-reineke/indent-blankline.nvim', branch = 'lua', keys = '<Leader>Ti',
+    config = load_conf 'ui._indentline'
+  },
 
   -- Better search highlighting
   {
@@ -59,9 +59,16 @@ local plugins = {
     config = load_conf 'ui._goyo',
   },
 
+  -- Cosmetic for diagnostics, references, telescope results, etc
+  {
+    "folke/trouble.nvim", after = 'nvim-lspconfig',
+    config = load_conf 'ui._trouble'
+  },
+
   -- Show keybinding in popup like on doom-emacs
   {
-    'folke/which-key.nvim', event = 'VimEnter',
+    -- 'folke/which-key.nvim', event = 'VimEnter',
+    '~/Projects/which-key.nvim', event = 'VimEnter',
     config = load_conf 'ui._which-key'
   },
 
@@ -78,11 +85,13 @@ local plugins = {
   -- Neovim buil-in lsp config
   {
     'neovim/nvim-lspconfig',
-    event = 'BufRead',
+    after = 'nvim-lspinstall',
     config = load_conf 'lsp',
     requires = {
       -- Manage lsp installation
-      {'kabouzeid/nvim-lspinstall', after = 'nvim-lspconfig'},
+      {
+        'kabouzeid/nvim-lspinstall', event = 'BufRead',
+      },
 
       -- Better lsp ui
       {'glepnir/lspsaga.nvim', keys = '<Leader>l'},
@@ -97,7 +106,10 @@ local plugins = {
     'nvim-telescope/telescope.nvim', keys = '<Leader>f',
     config = load_conf 'telescope',
     requires = {
-      {'nvim-telescope/telescope-media-files.nvim', after = 'telescope.nvim'},
+      {
+        'nvim-telescope/telescope-media-files.nvim', after = 'telescope.nvim',
+        config = "require('telescope').load_extension('media_files')"
+      },
     },
   },
 
@@ -111,7 +123,7 @@ local plugins = {
 
   -- Completition
   {
-    'hrsh7th/nvim-compe', event = 'InsertEnter',
+    'hrsh7th/nvim-compe',
     config = load_conf '_completion',
   },
 
@@ -133,6 +145,7 @@ local plugins = {
   -- Better navigation
   {
     'phaazon/hop.nvim', keys = '<Leader>j',
+    config = load_conf '_hop'
   },
   -- {
   --   'ggandor/lightspeed.nvim', keys = '<Leader>j',
@@ -165,10 +178,10 @@ local plugins = {
   },
 
   -- Virtual text of current context
-  -- {
-  --   'code-biscuits/nvim-biscuits', after = 'nvim-treesitter',
-  --   config = load_conf '_biscuits'
-  -- },
+  {
+    'code-biscuits/nvim-biscuits', after = 'nvim-treesitter',
+    config = load_conf '_biscuits'
+  },
 
   ---------------------------------
   -- Git
@@ -205,10 +218,10 @@ local plugins = {
 
   -- Show color on color code
   {
-    'norcalli/nvim-colorizer.lua', keys = '<Leader>tc',
+    'norcalli/nvim-colorizer.lua', keys = '<Leader>Tc',
     config = function ()
       require 'colorizer'.setup()
-      Map_n {'<Leader>tc', ':ColorizerToggle<CR>'}
+      Map_n {'<Leader>Tc', ':ColorizerToggle<CR>'}
     end
   },
 
@@ -216,25 +229,28 @@ local plugins = {
   {'psliwka/vim-smoothie', event = 'BufRead'},
 
   -- Tree explorer
-  {'kyazdani42/nvim-tree.lua', keys = '<Leader>tT', config = load_conf '_luatree'},
+  {'kyazdani42/nvim-tree.lua', keys = '<LeaderTtT', config = load_conf '_luatree'},
 
   -- Float terminal
   {
-    'voldikss/vim-floaterm', keys = {'<Leader>t', '<Leader>T'},
+    'voldikss/vim-floaterm', keys = {'<Leader>t', '<Leader>T',  '<Leader>fm'},
     config = load_conf '_terminal'
   },
 
   ---------------------------------
   --
-  -- Specific Language
+  -- Language Support
   --
+  ---------------------------------
+  -- Run blocs/lines of code
+  {
+    'michaelb/sniprun', run = 'bash ./install.sh', keys = '<Leader>S',
+    config = load_conf '_sniprun',
+  },
   ---------------------------------
   -- Go
   ---------------------------------
-  {
-    'fatih/vim-go', ft = 'go',
-    config = 'vim.cmd[[packadd! vim-go]]',
-  },
+  -- { 'fatih/vim-go', ft = 'go', after = 'nvim-lspconfig' },
   ---------------------------------
   -- Lisp
   ---------------------------------
@@ -244,7 +260,14 @@ local plugins = {
       'fennel', 'clojure', 'scheme', 'lisp', 'racket', 'hy', 'janet', 'carp',
       'wast',
     },
-    config = function () vim.cmd[[packadd! parinfer-rust]] end
+  },
+  ---------------------------------
+  -- Neorg
+  ---------------------------------
+  {
+    "vhyrro/neorg", branch = 'unstable', after = 'nvim-treesitter',
+    config = load_conf '_neorg',
+    requires = "nvim-lua/plenary.nvim"
   },
   ---------------------------------
   -- Markdown and note taking

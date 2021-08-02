@@ -31,15 +31,24 @@ local leader_maps = {
   l = {name = 'Lsp'},
   o = {name = 'Open'},
   p = 'Paste from clipboard',
+  S = {
+    name = 'Sniprun',
+    c = 'Clean REPL Memory',
+    i = 'Info',
+    R = 'Reset',
+    r = 'Run',
+    x = 'Close',
+  },
   s = 'Split below(horizontal)',
-  T = {name = 'Terminal'},
-  t = {
+  T = {
     name = 'Toggle',
     C = 'Conceal',
     c = 'Colorizer',
+    i = 'Indentline',
     t = 'Terminal',
     T = 'NvimTree',
   },
+  t = {name = 'Terminal'},
   v = 'Split right(vertical)',
   w = {
     name = 'Window',

@@ -1,8 +1,8 @@
-vim.cmd[[packadd nvim-lspconfig]]
-vim.cmd[[packadd nvim-lspinstall]]
-vim.cmd[[packadd lspsaga.nvim]]
+local load_conf = function (server)
+  return require('plugins.lsp.servers._'..server)
+end
 
-local load_conf = function (server, modules)
+local setup_server = function (server_conf)
   -- Enable snippet support
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -13,35 +13,33 @@ local load_conf = function (server, modules)
     on_init = function ()
       print('LSP started!')
     end,
+    on_attach = function () require('plugins.lsp._keymaps') end
   }
 
-  local server_conf = default_conf
-  if vim.tbl_contains(modules, server) then
-    -- Available module
-    local module = 'plugins.lsp._'..server
-
-    -- Extend default config with config for specific language server
+  if server_conf ~= nil and not vim.tbl_isempty(server_conf) then
+    -- Merge default_conf with server_conf
     server_conf = vim.tbl_deep_extend(
-      'force', default_conf, require(module)
+      'force', default_conf, server_conf
     )
+    return server_conf
   end
-  return server_conf
+  return default_conf
 end
 
 local setup_servers = function()
-  -- Available modules on plugins.lsp (config for specific lang server)
-  local modules_list = {
-    "lua"
+  local servers_conf = {
+    lua = load_conf('lua'),
+    go = {root_dir = vim.loop.cwd},
   }
 
   -- Setup lspinstall
   require'lspinstall'.setup()
   local servers = require'lspinstall'.installed_servers()
 
-  -- Load server and its module (config)
+  -- Load server and its config
   for _, server in pairs(servers) do
     require'lspconfig'[server].setup(
-      load_conf(server, modules_list)
+      setup_server(servers_conf[server])
     )
   end
 end

@@ -3,4 +3,5 @@ plugged/
 undodir/
 fonts/
 plugin/packer_compiled.vim
+plugin/packer_compiled.lua
 .netrwhist
