@@ -8,7 +8,6 @@ require('telescope').setup {
         }
     }
 }
-require('telescope').load_extension('media_files')
 
 -- Find from filename
 setmap('n', '<Leader>ff', ':Telescope find_files<CR>', { noremap = true })

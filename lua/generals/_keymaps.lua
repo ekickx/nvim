@@ -62,27 +62,4 @@ Map_v {'<Leader>y', '"+y'}
 Map_n {'<Leader>p', '"+p'}
 
 -- Toggle conceal
-Map_n {"<Leader>tC", ":set <C-R>=&conceallevel ? 'conceallevel=0' : 'conceallevel=1'<CR><CR>"}
-
---------- Plugin Keybind ----------
-
--- LSP
--- code action
-Map_n {'<Leader>lc', ":Lspsaga code_action<CR>"}
-Map_v {'<Leader>lc', ":<C-U>Lspsaga code_action<CR>"}
--- show diagnostic
-Map_n {'<Leader>lds', ":Lspsaga show_line_diagnostics<CR>"}
--- jump to next diagnostic
-Map_n {'<Leader>ldn', ":Lspsaga diagnostic_jump_next<CR>"}
--- jump to prev diagnostic
-Map_n {'<Leader>ldp', ":Lspsaga diagnostic_jump_prev<CR>"}
--- find definition and reference
-Map_n {'<Leader>lf', ":Lspsaga lsp_finder<CR>"}
--- show hover doc
-Map_n {'<Leader>lh', ":Lspsaga hover_doc<CR>"}
--- preview definition
-Map_n {'<Leader>lp', ":Lspsaga preview_definition<CR>"}
--- rename var, func, etc
-Map_n {'<Leader>lr', ":Lspsaga rename<CR>"}
--- signature help / parameter info
-Map_n {'<Leader>ls', ":Lspsaga signature_help<CR>"}
+Map_n {"<Leader>TC", ":set <C-R>=&conceallevel ? 'conceallevel=0' : 'conceallevel=1'<CR><CR>"}
