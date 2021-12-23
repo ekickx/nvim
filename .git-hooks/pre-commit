@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+git diff --cached --name-only | while read FILE; do
+  if [[ "$FILE" =~ ^.+(lua)$ ]]; then
+    if [[ -f "$FILE" ]]; then
+      # Check syntax warnings/errors
+      luacheck "$FILE"
+      if [[ $? -ne 0 ]]; then
+        echo -e "\e[1;31mAborting commit: Syntax warnings/errors detected\e[0m\n"
+        exit 1
+      fi
+      stylua "$FILE"
+      git add "$FILE"
+      echo -e "\e[1;32m\tFinished: Formating lua code\e[0m\n"
+    fi
+  fi
+done || exit $?
