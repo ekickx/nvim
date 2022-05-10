@@ -16,7 +16,16 @@ db['autopairs(lua)'] = {
   on_update = nil,
   on_init = nil,
   on_load = function()
-    require('nvim-autopairs').setup()
+    local npairs = require('nvim-autopairs')
+    local Rule   = require('nvim-autopairs.rule')
+    npairs.setup()
+
+    -- Before: (item)=
+    -- Insert: >
+    -- After: (item)=> { }
+    Rule('%(.*%)%s*%=>$', ' {  }', { 'typescript', 'typescriptreact', 'javascript' })
+      :use_regex(true)
+      :set_end_pair_length(2)
   end,
 }
 
@@ -53,14 +62,6 @@ db['bufferline'] = {
       },
     }
 
-    -- Sorting
-    vim.cmd [[
-augroup SortBufferline
-  au!
-  au BufRead,BufLeave * lua require 'bufferline'.sort_buffers_by 'relative_directory'
-augroup END
-]]
-
     -- Keymap
     Map_n { '<Leader>bn', ':BufferLineCycleNext<CR>' }
     Map_n { '<Leader>bp', ':BufferLineCyclePrev<CR>' }
@@ -72,6 +73,20 @@ augroup END
       }
     end
   end,
+}
+
+db['clever-f'] = {
+  repo = 'rhysd/clever-f.vim'
+}
+
+db['clipboard-image'] = {
+  repo = 'ekickx/clipboard-image.nvim',
+  dependencies = nil,
+  dependants = nil,
+  on_update = nil,
+  on_init = nil,
+  on_load = nil,
+  -- url = '~/Projects/clipboard-image.nvim',
 }
 
 db['comment'] = {
@@ -116,6 +131,15 @@ db['doom-one'] = {
   end,
 }
 
+db['easy-align'] = {
+  repo = 'junegunn/vim-easy-align',
+  dependencies = nil,
+  dependants = nil,
+  on_update = nil,
+  on_init = nil,
+  on_load = nil,
+}
+
 db['fern'] = {
   repo = 'lambdalisue/fern.vim',
   dependencies = {
@@ -128,6 +152,7 @@ db['fern'] = {
     vim.cmd [[
 function! s:init_fern()
     silent! nunmap <buffer> <C-L>
+    nnoremap <buffer> <Leader>of <cmd>q<cr>
 endfunction
 
 augroup fern-custom
@@ -146,7 +171,10 @@ db['filetype'] = {
   dependants = nil,
   on_update = nil,
   on_init = nil,
-  on_load = nil,
+  on_load = function()
+    vim.cmd [[runtime! ftdetect/*.vim]]
+    vim.cmd [[runtime! ftdetect/*.lua]]
+  end,
 }
 
 db['fix cursor-hold'] = {
@@ -224,6 +252,18 @@ db['parinfer(lua)'] = {
   on_update = nil,
   on_init = nil,
   on_load = nil,
+}
+
+db['rose-pine'] = {
+  repo = 'rose-pine/neovim',
+  alias = 'rose-pine',
+  dependencies = nil,
+  dependants = nil,
+  on_update = nil,
+  on_init = nil,
+  on_load = function()
+    vim.cmd 'colorscheme rose-pine'
+  end,
 }
 
 db['sandwich'] = {
@@ -356,13 +396,17 @@ db['telescope'] = {
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-lua/popup.nvim',
+    'kyazdani42/nvim-web-devicons',
   },
   dependants = nil,
   on_update = nil,
   on_init = nil,
   on_load = function()
-    Map_n { '<Leader>ff', '<Cmd>Telescope find_files<CR>' }
-    Map_n { '<Leader>/', '<Cmd>Telescope live_grep<CR>' }
+    Map_n { '<Leader>ff', '<Cmd>Telescope find_files theme=dropdown<CR>' }
+    Map_n { '<Leader>fc', '<Cmd>Telescope live_grep theme=dropdown<CR>' }
+    Map_n { '<Leader>fk', '<Cmd>Telescope keymaps theme=dropdown<CR>' }
+    Map_n { '<Leader>/', '<Cmd>Telescope live_grep theme=dropdown<CR>' }
+    Map_n { '<Leader><Space>', '<Cmd>Telescope<CR>' }
   end,
 }
 
@@ -413,7 +457,7 @@ db['terminal'] = {
       insert_mappings = false,
     }
     -- Terminal window mapping
-    Map_t { '<Esc>', [[<C-\><C-n>]] }
+    Map_t { '<Esc><Esc>', [[<C-\><C-n>]] }
   end,
 }
 
@@ -426,19 +470,20 @@ db['treesitter'] = {
   on_load = function()
     require('nvim-treesitter.configs').setup {
       ensure_installed = {
-        'javascript',
-        'go',
-        'cpp',
-        'jsonc',
-        'html',
-        'css',
-        'lua',
         'c',
-        'rust',
-        'zig',
-        'python',
-        'svelte',
+        'cpp',
+        'css',
+        'go',
+        'html',
+        'javascript',
         'json',
+        'jsonc',
+        'lua',
+        'markdown',
+        'python',
+        'rust',
+        'svelte',
+        'zig',
       },
       highlight = {
         enable = true,
@@ -446,6 +491,21 @@ db['treesitter'] = {
       indent = {
         enable = false,
       },
+    }
+  end,
+}
+
+db['treesitter-autotag'] = {
+  repo = 'windwp/nvim-ts-autotag',
+  dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  dependants = nil,
+  on_update = nil,
+  on_init = nil,
+  on_load = function()
+    require'nvim-treesitter.configs'.setup {
+      autotag = {
+        enable = true,
+      }
     }
   end,
 }
@@ -538,6 +598,15 @@ db['word-motion'] = {
 
 db['yuck'] = {
   repo = 'elkowar/yuck.vim',
+  dependencies = nil,
+  dependants = nil,
+  on_update = nil,
+  on_init = nil,
+  on_load = nil,
+}
+
+db['yue'] = {
+  repo = 'pigpigyyy/yuescript-vim',
   dependencies = nil,
   dependants = nil,
   on_update = nil,

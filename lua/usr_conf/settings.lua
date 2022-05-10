@@ -1,9 +1,3 @@
-local apply_options = function(opts)
-  for k, v in pairs(opts) do
-    vim.opt[k] = v
-  end
-end
-
 local options = {
   autoindent = true, -- enable autoindent
   backup = false, -- disable backup
@@ -39,7 +33,7 @@ local options = {
   }, -- make vertical split sign better
   foldmethod = 'expr',
   foldexpr = 'nvim_treesitter#foldexpr()',
-  foldlevel = 1, -- minimum level to allow folding
+  foldlevel = 2, -- minimum level to allow folding
   foldlevelstart = 1, -- set foldlevel when start editing files
   -- foldnestmax    = 1, -- only allow 1 nested folds, it can be confusing if I have too many
   foldopen = { 'percent', 'search' }, -- don't open fold if I don't tell it to do so
@@ -60,4 +54,6 @@ local options = {
   updatetime = 100, -- set faster update time
 }
 
-apply_options(options)
+for option, value in pairs(options) do
+  vim.opt[option] = value
+end

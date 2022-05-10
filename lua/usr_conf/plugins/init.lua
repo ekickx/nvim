@@ -54,4 +54,55 @@ M.dep.defer_load = function(plugins, wait_time)
   end, wait_time)
 end
 
+M.jetpack = {}
+
+M.jetpack.bootstrap = function()
+  local path = vim.fn.stdpath 'data' .. '/site/pack/jetpack/%s/vim-jetpack'
+  local src, opt = path:format('src'), path:format('opt')
+  print(opt)
+
+  if vim.fn.empty(vim.fn.glob(src)) > 0 then
+    vim.fn.system {
+      'git', 'clone', '--depth=1',
+      'https://github.com/tani/vim-jetpack',
+      src
+    }
+  end
+
+  if vim.fn.empty(vim.fn.glob(opt)) > 0 then
+    vim.fn.mkdir(vim.fn.stdpath 'data' .. '/site/pack/jetpack/opt', 'p')
+    vim.fn.system {
+      'ln', '-sf', src, opt
+    }
+  end
+
+  vim.cmd 'packadd vim-jetpack'
+end
+
+M.jetpack.load = function(plugins)
+  local db = require 'usr_conf.plugins.database'
+  local plugins_data = {}
+  plugins = vim.tbl_flatten(plugins)
+  for _, plugin in pairs(plugins) do
+    if type(db[plugin].on_init) == 'function' then
+      db[plugin].on_init()
+    end
+
+    table.insert(plugins_data, {
+      db[plugin].repo,
+      run = db[plugin].on_update,
+      as = db[plugin].alias,
+      opt = 1
+    })
+
+    vim.schedule(function()
+      if type(db[plugin].on_load) == 'function' then
+        db[plugin].on_load()
+      end
+    end)
+  end
+
+  require('jetpack').setup(plugins_data)
+end
+
 return M
