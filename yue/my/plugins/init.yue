@@ -1,0 +1,9 @@
+vim.cmd [[packadd paq-nvim]]
+require("paq")
+  * "savq/paq-nvim"
+  * {
+    "rose-pine/neovim",
+    as: "rose-pine"
+  }
+
+vim.cmd "colorscheme rose-pine"

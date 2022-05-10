@@ -1,0 +1,1 @@
+../../vendors/yuescript-vim/colors/yue.vim
