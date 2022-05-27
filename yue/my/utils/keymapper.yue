@@ -1,6 +1,6 @@
 import "my.utils" as :str2tbl, :tbl_rmduplicate
 
-export default (mappings, ...) ->
+export map = (mappings, ...) ->
   if type(mappings) == "string" then mappings = {mappings, ...}
 
   if type(mappings[1]) == "string" then mappings = {mappings}
@@ -18,3 +18,8 @@ export default (mappings, ...) ->
     keys = vim.split(keys, " | ")
     for key in *keys
       vim.keymap.set(mode, key, run, opt)
+
+export unmap = (mapping) ->
+  {:mode, :keys, :opt} = mapping
+  for key in *keys
+    vim.keymap.del(mode, key, opt)

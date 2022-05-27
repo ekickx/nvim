@@ -38,7 +38,7 @@ set
   -- foldnestmax: 1 -- only allow 1 nested folds, it can be confusing if I have too many
   foldopen: { "percent", "search" } -- don"t open fold if I don"t tell it to do so
   inccommand: "split" -- incrementally show result of command
-  laststatus: 2 -- always enable statusline
+  laststatus: 3 -- global statusline
   listchars: eol: "↲", tab: "» " -- set listchars
   mouse: "a" -- enable mouse support
   pumheight: 10 -- limit completion items

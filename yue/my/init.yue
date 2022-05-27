@@ -1,5 +1,5 @@
 global ^ -- All upper case variables are global
-import "my.utils.keymapper" as Map
+import "my.utils.keymapper" as map:Map, unmap:Unmap
 
 import "my.utils" as :let
 let g:

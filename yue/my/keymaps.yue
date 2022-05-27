@@ -40,11 +40,11 @@ Map
 -- MOVE LINE
 -------------
 Map
-  * { "ni", "<A-k>", "<ESC>:m .-2<CR>", desc: "Move line up"   }
-  * { "v", "<A-k>", ":m '<-2<CR>gv", desc: "Move lines up"     }
+  * { "ni", "<A-k>", "<ESC>:m .-2<CR>", { desc: "Move line up"    }}
+  * { "v", "<A-k>", ":m '<-2<CR>gv", { desc: "Move lines up"      }}
 
-  * { "ni", "<A-j>", "<ESC>:m .+1<CR>", desc: "Move line down" }
-  * { "v", "<A-j>", ":m '>+1<CR>gv", desc: "Move lines down"   }
+  * { "ni", "<A-j>", "<ESC>:m .+1<CR>", { desc: "Move line down"  }}
+  * { "v", "<A-j>", ":m '>+1<CR>gv", { desc: "Move lines down"    }}
 
 -------------
 -- CLIPBOARD
@@ -55,3 +55,24 @@ Map
 
   * mode: "nv", keys: "#{l}p", run: [["+p]]
     opt: desc: "Paste from system clipboard"
+
+------------------
+-- FILE OPERATION
+------------------
+Map "ni", "<C-s>", "<ESC>:w<CR>", desc: "Save file"
+
+-------------
+-- AVOID RSI
+-------------
+Map
+  * mode: "n", keys: "#{l}#{l}", run: ":"
+    opt: desc: "Command-line mode"
+  
+  * mode: "n", keys: "#{l}f", run: "/"
+    opt: desc: "Search command"
+
+------------
+-- TERMINAL
+------------
+Map "t", "<ESC><ESC>", [[<C-\><C-n>]],
+  desc: "Escape terminal to normal mode"
