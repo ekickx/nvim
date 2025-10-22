@@ -1,2 +1,3 @@
-lua\my\*.lua linguist-generated=true
-lua\my\bootstrap.lua linguist-generated=false
+# lua\my\*.lua linguist-generated=true
+# lua\my\bootstrap.lua linguist-generated=false
+lua\my\*.lua linguist-generated

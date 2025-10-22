@@ -33,5 +33,6 @@
   (load.substitute)
   (load.telescope)
   (load.mini)
+  (load.neoscroll)
   (load.terminal)
   (load.wilder))

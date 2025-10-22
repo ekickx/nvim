@@ -13,8 +13,10 @@
         :colorcolumn    :80
         :cursorline     true
         :cmdheight      0     ; hide cmd when not used
+        :showcmdloc     :statusline ; show pressed key on statusline
         :showmode       false
         :laststatus     3
+        :winbar         :%f
         :number         true
         :relativenumber true
         :signcolumn     :auto ;gutter thing
@@ -43,14 +45,16 @@
                             "RemoteSigned -Command "))
         :shellquote   ""
         :shellxquote  ""
-        :shellpipe    "2>&1 | tee '%s'"
-        :shellredir   ">'%s' 2>&1"
+        :shellpipe    (if (= (vim.fn.has :win32) 1) "2>&1 | tee '%s'")
+        :shellredir   (if (= (vim.fn.has :win32) 1) ">'%s' 2>&1")
+        
         ; Other
         :hidden       true
         :lazyredraw   true
         :completeopt  [:menu :menuone :noselect :noinsert]
         :pumheight    10
         :re           0
+        :scrolloff    1  ; always show at least 1 line above/below the cursor
         :timeoutlen   400
         :updatetime   100}]
 

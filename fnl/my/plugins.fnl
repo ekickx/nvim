@@ -37,6 +37,10 @@
   (setup :mini.comment))
   ;(setup :mini.surround))
 
+(fn export.neoscroll []
+  (packadd! :neoscroll.nvim)
+  (setup :neoscroll))
+
 (fn export.sandwich []
   (packadd! :vim-sandwich))
 
