@@ -29,10 +29,6 @@
 (map! :ni :<C-j> :<ESC><C-W>j "Move between windows")
 (map! :ni :<C-k> :<ESC><C-W>k "Move between windows")
 (map! :ni :<C-l> :<ESC><C-W>l "Move between windows")
-;(each [_ key (pairs (vim.split :hjkl ""))]
-;  (let [keybind (string.format "<C-%s>" key)
-;        run (.. :<ESC><C-W> keybind)]
-;    (map! :ni keybind run "Move between windows")))
 
 ;------------
 ;  Move Line
@@ -75,6 +71,13 @@
 (map! :ni :<C-s> :<cmd>w<cr>
       "Save file")
 
+;------------------
+;  Session
+;------------------
+(let [path (.. (vim.fn.stdpath :config) :/ :session)]
+  (map! :n :<Leader>ss (: ":mks! %s/" :format path))
+  (map! :n :<Leader>sr (: ":so %s/" :format path)))
+
 ;-------------
 ;  Avoid RSI
 ;-------------
@@ -88,3 +91,11 @@
 ;-------------
 (map! :t :<Esc><Esc> :<C-\><C-n>
       "Escape terminal mode")
+
+
+;-------------
+;  Open
+;-------------
+(map! :n :<Leader>oc (let [config (.. (vim.fn.stdpath :config) :/fnl/my )]
+                       (.. "<cmd>tabnew <bar> tcd " config :<CR> ":e "))
+      "Open Config")

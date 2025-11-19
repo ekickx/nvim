@@ -3,13 +3,14 @@
 (local export {})
 
 (fn setup [name ?config]
-  (let [module (require name)
+  (let [plugin (require name)
         config (or ?config {})]
-    (module.setup config)))
+    (plugin.setup config)))
+    ; plugin))
 
 (fn export.apm []
   (packadd! :vim-apm)
-    (let [apm (require :vim-apm)]
+  (let [apm (require :vim-apm)]
     (apm:setup {})
     (map! :n :<Leader>apm #(apm:toggle_monitor))))
 
@@ -34,8 +35,33 @@
 (fn export.mini [modules]
   (packadd! :mini.nvim)
   (setup :mini.pairs)
-  (setup :mini.comment))
+  (setup :mini.files)
+  (setup :mini.comment)
   ;(setup :mini.surround))
+  (let [hp (require :mini.hipatterns)]
+    (hp.setup {:highlighters
+               {:hex_color (hp.gen_highlighter.hex_color)}})))
+
+; (fn mini [mods]
+;   (let [mini-mods {:pairs #(setup :mini.pairs)
+;                    :files #(setup :mini.files)
+;                    :comment #(setup :mini.comment)
+;                    :hipatterns #(let [hp (require :mini.hipatterns)]
+;                                   (hp.setup {:highlighters
+;                                              {:hex_color (hp.gen_highlighter.hex_color)}}))}]
+;     (each [mod config (pairs mods)]
+;       ((. mini-mods mod)))))
+
+; (fn mini [mods]
+;   (each [mod config
+;          (pairs
+;            {:pairs #(setup :mini.pairs)
+;             :files #(setup :mini.files)
+;             :comment #(setup :mini.comment)
+;             :hipatterns #(let [hp (require :mini.hipatterns)]
+;                            (hp.setup {:highlighters
+;                                       {:hex_color (hp.gen_highlighter.hex_color)}}))})]
+;     ))
 
 (fn export.neoscroll []
   (packadd! :neoscroll.nvim)
@@ -44,14 +70,16 @@
 (fn export.sandwich []
   (packadd! :vim-sandwich))
 
+; (test plugin :doc "asdfas" :version :v1.2)
+
 (fn export.smart-splits []
   (packadd! :smart-splits.nvim)
-  (let [smart-splits (require :smart-splits)]
-    (smart-splits.setup {})
-    (map! :n :<A-h> smart-splits.resize_left)
-    (map! :n :<A-j> smart-splits.resize_down)
-    (map! :n :<A-k> smart-splits.resize_up)
-    (map! :n :<A-l> smart-splits.resize_right)))
+  (let [ss (require :smart-splits)]
+    (ss.setup {})
+    (map! :n :<A-h> ss.resize_left)
+    (map! :n :<A-j> ss.resize_down)
+    (map! :n :<A-k> ss.resize_up)
+    (map! :n :<A-l> ss.resize_right)))
 
 (fn export.substitute []
   (packadd! :substitute.nvim)
@@ -95,6 +123,10 @@
   (let [term (. (require :nvim-terminal) :DefaultTerminal)]
     (map! :n :<Leader>ot #(term:open)
           "Open terminal")))
+
+(fn export.typst-preview []
+  (packadd! :typst-preview.nvim)
+  (setup :typst-preview))
 
 (fn export.wilder []
   (packadd! :wilder.nvim)

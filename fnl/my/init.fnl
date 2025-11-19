@@ -24,7 +24,7 @@
 (require :my.keymaps)
 (require :my.commands)
 (let [load (require :my.plugins)]
-  (load.apm)
+  ; (load.apm)
   (load.devicons)
   (load.fundo)
   (load.leap)

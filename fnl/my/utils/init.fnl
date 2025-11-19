@@ -35,6 +35,26 @@
               (if (= :string (type opt)) {:desc opt} opt))]
     (api! create_user_command name run opt)))
 
+(fn autocmd! [events pattern callback]
+  (let [pattern (if (= :string (type pattern)) [pattern] pattern)
+        callback (if (= :string (type callback)) #(vim.cmd callback) callback)]
+  (api! create_autocmd events {:pattern pattern :callback callback})))
+
+(fn export.augroup! [name ...]
+  "
+  `(augroup! :name
+  [{event} {pattern} {callback}]
+  [{event} {pattern} {callback}])`
+  "
+
+  (let [group (api! create_augroup name {:clear true})]
+    (each [_ [event pattern callback] (ipairs ...)]
+      (api! create_autocmd event {: pattern
+                                  :callback (if (= :string (type callback))
+                                              #(vim.cmd callback)
+                                              callback)
+                                  : group}))))
+
 (fn export.z [query]
   (let [output  (: (vim.system [:zoxide :query query]) :wait)
         path    (. (vim.split output.stdout "\n") 1)]
