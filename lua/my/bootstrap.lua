@@ -1,7 +1,10 @@
 local export = {}
 
+_G.ConfigPath = vim.fn.stdpath("config")
+_G.DataPath = vim.fn.stdpath("data")
+
 local ispath = vim.loop.fs_stat
-local packdir = vim.fn.stdpath("config") .. "/pack/my/opt/"
+local packdir = vim.fs.joinpath(ConfigPath, "pack", "my", "opt")
 
 local function clone(args)
   return vim.fn.system({
@@ -14,7 +17,7 @@ end
 
 function export.lazy(args)
   local name = "lazy.nvim"
-  local path = vim.fn.stdpath("data")
+  local path = DataPath
 	    .. "/lazy/" .. name 
 
   if not ispath(path) then
@@ -37,7 +40,7 @@ function export.rocks()
   -- nvim -u NORC -c "source https://raw.githubusercontent.com/nvim-neorocks/rocks.nvim/master/installer.lua"
   local rocks_config = {
     --rocks_path = "C:\\Users\\Windows 10\\AppData\\Local\\nvim-data\\rocks",
-    rocks_path = vim.fn.expand(vim.fn.stdpath("data") .. "/rocks"),
+    rocks_path = vim.fs.joinpath(DataPath, "rocks"),
     luarocks_binary = "luarocks",
   }
 
@@ -59,8 +62,24 @@ function export.rocks()
   vim.opt.runtimepath:append(vim.fs.joinpath(rocks_config.rocks_path, "lib", "luarocks", "rocks-5.1", "*", "*"))
 end
 
-function export.nfnl()
-  local path = packdir .. "nfnl"
+function export.lzn(version)
+  local path = vim.fs.joinpath(packdir, "lzn")
+  if not ispath(path) then
+    print("[lz.n]: doesn't exist; start installing")
+    clone({
+      url = "https://github.com/lumen-oss/lz.n",
+      path = path
+    })
+
+    vim.fn.system({"git", "-C", path, "checkout", version})
+    print("[lz.n]: installed")
+  end
+  vim.cmd("helptags " .. path .. "/doc")
+  vim.opt.rtp:append(path)
+end
+
+function export.nfnl(version)
+  local path = vim.fs.joinpath(packdir, "nfnl")
   if not ispath(path) then
     print("[nfnl]: doesn't exist; start installing")
     clone({
@@ -68,7 +87,7 @@ function export.nfnl()
       path = path
     })
 
-    vim.fn.system({"git", "-C", path, "checkout", "v1.0.0"})
+    vim.fn.system({"git", "-C", path, "checkout", version})
     print("[nfnl]: installed")
   end
   vim.cmd("helptags " .. path .. "/docs")
@@ -79,7 +98,7 @@ end
 function export.tangerine(args)
   args = args or {version = ""}
   local name = "tangerine.nvim"
-  local path = packdir .. name
+  local path = vim.fs.joinpath(packdir, name)
 
   if not ispath(path) then
     print("["..name.."]: start installing")

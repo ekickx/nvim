@@ -23,16 +23,39 @@
 (require :my.settings)
 (require :my.keymaps)
 (require :my.commands)
-(let [load (require :my.plugins)]
+
+(let [load (. (require :lz.n) :load)
+      p (require :my.plugins)]
+  (load [p.devicons
+         p.sandwich
+         p.fundo
+         p.neoscroll
+
+         ; keypress
+         p.substitute
+         p.smart-splits
+         p.terminal
+         p.wilder
+
+         ; ftplugin
+         p.emmet
+         p.pencil
+         p.conjure
+         ]))
+
+(let [load (require :my.plugins_old)]
   ; (load.apm)
-  (load.devicons)
-  (load.fundo)
-  (load.leap)
-  (load.sandwich)
-  (load.smart-splits)
-  (load.substitute)
+  ; (load.devicons)
+  ; (load.fundo)
+  ; (load.leap)
+  ; (load.sandwich)
+  ; (load.smart-splits)
+  ; (load.substitute)
   (load.telescope)
   (load.mini)
-  (load.neoscroll)
-  (load.terminal)
-  (load.wilder))
+  ; (load.neoscroll)
+  ; (load.klog)
+  ; (load.terminal)
+  (load.treesitter)
+  ; (load.wilder))
+)

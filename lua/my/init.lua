@@ -1,4 +1,4 @@
--- :fennel:1730007666
+-- :fennel:1791820588
 local function g_21(...)
   if (0 ~= (#{...} % 2)) then
     return nil, "Args is odd, it needs to be even"
@@ -13,15 +13,12 @@ g_21("loaded_tutor_mode_plugin", 1, "loaded_spec", 1)
 require("my.settings")
 require("my.keymaps")
 require("my.commands")
-local load = require("my.plugins")
-load.apm()
-load.devicons()
-load.fundo()
-load.leap()
-load.sandwich()
-load["smart-splits"]()
-load.substitute()
+do
+  local load = require("lz.n").load
+  local p = require("my.plugins")
+  load({p.devicons, p.sandwich, p.fundo, p.neoscroll, p.substitute, p["smart-splits"], p.terminal, p.wilder, p.emmet, p.pencil, p.conjure})
+end
+local load = require("my.plugins_old")
 load.telescope()
 load.mini()
-load.terminal()
-return load.wilder()
+return load.treesitter()

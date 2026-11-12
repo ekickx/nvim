@@ -1,4 +1,4 @@
--- :fennel:1728214636
+-- :fennel:1762313418
 local export = {}
 export["packadd!"] = function(package)
   return vim.cmd(("packadd " .. package))
@@ -25,6 +25,43 @@ export["cmd!"] = function(name, run, opt)
     end
   end
   return vim.api.nvim_create_user_command(name, run, opt0)
+end
+local function autocmd_21(events, pattern, callback)
+  local pattern0
+  if ("string" == type(pattern)) then
+    pattern0 = {pattern}
+  else
+    pattern0 = pattern
+  end
+  local callback0
+  if ("string" == type(callback)) then
+    local function _5_()
+      return vim.cmd(callback)
+    end
+    callback0 = _5_
+  else
+    callback0 = callback
+  end
+  return vim.api.nvim_create_autocmd(events, {pattern = pattern0, callback = callback0})
+end
+export["augroup!"] = function(name, ...)
+  local group = vim.api.nvim_create_augroup(name, {clear = true})
+  for _, _7_ in ipairs(...) do
+    local event = _7_[1]
+    local pattern = _7_[2]
+    local callback = _7_[3]
+    local _8_
+    if ("string" == type(callback)) then
+      local function _9_()
+        return vim.cmd(callback)
+      end
+      _8_ = _9_
+    else
+      _8_ = callback
+    end
+    vim.api.nvim_create_autocmd(event, {pattern = pattern, callback = _8_, group = group})
+  end
+  return nil
 end
 export.z = function(query)
   local output = vim.system({"zoxide", "query", query}):wait()

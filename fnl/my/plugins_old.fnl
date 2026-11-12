@@ -1,0 +1,180 @@
+(local {: map!
+        : packadd!
+        : augroup!} (require :my.utils))
+(local export {})
+
+(fn setup [name ?config]
+  (let [plugin (require name)
+        config (or ?config {})]
+    (plugin.setup config)))
+    ; plugin))
+
+(fn export.apm []
+  (packadd! :vim-apm)
+  (let [apm (require :vim-apm)]
+    (apm:setup {})
+    (map! :n :<Leader>apm #(apm:toggle_monitor))))
+
+(fn export.devicons []
+  (packadd! :nvim-web-devicons)
+  (setup :nvim-web-devicons))
+
+(fn export.emmet []
+  (tset vim.g :user_emmet_leader_key ",")
+  (packadd! :emmet-vim))
+
+(fn export.fundo []
+  (packadd! :promise-async)
+  (packadd! :nvim-fundo)
+  (setup :fundo))
+
+(fn export.klog []
+  (packadd! :vim-klog))
+
+(fn export.leap []
+  (packadd! :leap.nvim)
+  (let [leap (require :leap)]
+    (leap.create_default_mappings)))
+
+(fn export.mini [modules]
+  (packadd! :mini.nvim)
+  (setup :mini.pairs)
+  (setup :mini.files)
+  (map! :n :<Leader>of _G.MiniFiles.open "Open [mini]files")
+  (setup :mini.comment)
+  ;(setup :mini.surround))
+  (let [hp (require :mini.hipatterns)]
+    (hp.setup {:highlighters
+               {:hex_color (hp.gen_highlighter.hex_color)}})))
+
+; (fn mini [mods]
+;   (let [mini-mods {:pairs #(setup :mini.pairs)
+;                    :files #(setup :mini.files)
+;                    :comment #(setup :mini.comment)
+;                    :hipatterns #(let [hp (require :mini.hipatterns)]
+;                                   (hp.setup {:highlighters
+;                                              {:hex_color (hp.gen_highlighter.hex_color)}}))}]
+;     (each [mod config (pairs mods)]
+;       ((. mini-mods mod)))))
+
+; (fn mini [mods]
+;   (each [mod config
+;          (pairs
+;            {:pairs #(setup :mini.pairs)
+;             :files #(setup :mini.files)
+;             :comment #(setup :mini.comment)
+;             :hipatterns #(let [hp (require :mini.hipatterns)]
+;                            (hp.setup {:highlighters
+;                                       {:hex_color (hp.gen_highlighter.hex_color)}}))})]
+;     ))
+
+(fn export.neoscroll []
+  (packadd! :neoscroll.nvim)
+  (setup :neoscroll))
+
+(fn export.pencil []
+  (packadd! :vim-pencil)
+  (augroup! :pencil
+            [:FileType :text "call pencil#init()"]))
+
+(fn export.sandwich []
+  (packadd! :vim-sandwich))
+
+; (test plugin :doc "asdfas" :version :v1.2)
+
+(fn export.smart-splits []
+  (packadd! :smart-splits.nvim)
+  (let [ss (require :smart-splits)]
+    (ss.setup {})
+    (map! :n :<A-h> ss.resize_left "Resize pane")
+    (map! :n :<A-j> ss.resize_down "Resize pane")
+    (map! :n :<A-k> ss.resize_up "Resize pane")
+    (map! :n :<A-l> ss.resize_right "Resize pane")))
+
+(fn export.substitute []
+  (packadd! :substitute.nvim)
+  (let [s (require :substitute)]
+    (s.setup)
+    (map! :n :x s.operator "Substitute")
+    (map! :n :xx s.line "Substitute")
+    (map! :n :X s.eol "Substitute")
+    (map! :x :x s.visual "Substitute")))
+
+(fn export.telescope []
+  (packadd! :plenary.nvim)
+  (packadd! :telescope.nvim)
+  (setup :telescope
+         {:defaults {:prompt_prefix "   "
+                     :sorting_strategy :ascending
+                     :layout_config
+                     {:horizontal
+                      {:prompt_position :top}}}})
+  (map! :n :<Leader>ff ":Telescope find_files<cr>"
+        "Find files")
+  (map! :n :<Leader>fb ":Telescope buffers<cr>"
+        "Find buffers")
+  (map! :n :<Leader>fc ":Telescope live_grep<cr>"
+        "Find context")
+  (map! :n :<Leader>fh ":Telescope help_tags<cr>"
+        "Find help tags")
+  (map! :n :<Leader>fk ":Telescope keymaps<cr>"
+        "Find keymaps"))
+
+(fn export.terminal []
+  (packadd! :nvim-terminal)
+  (setup :nvim-terminal)
+
+  (let [term (. (require :nvim-terminal) :DefaultTerminal)]
+    (map! :n :<Leader>ot #(term:open)
+          "Open terminal")))
+
+(fn export.toggleterm []
+  (packadd! :toggleterm.nvim)
+  (setup :toggleterm
+         {:open_mapping :<Leader>ot
+          :insert_mappings false}))
+
+(fn export.treesitter []
+  (packadd! :nvim-treesitter)
+  (setup :nvim-treesitter.configs
+         {:ensure_installed [:c :lua :fennel :python]
+          :highlight        {:enable true}}))
+
+(fn export.typst-preview []
+  (packadd! :typst-preview.nvim)
+  (setup :typst-preview))
+
+(fn export.wilder []
+  (packadd! :wilder.nvim)
+  (setup :wilder {:modes [:: :/ :?]})
+  (let [wilder (require :wilder)]
+    (wilder.set_option
+      :renderer
+      (wilder.popupmenu_renderer
+        ; Command Palette theme
+        (wilder.popupmenu_palette_theme
+          {:border :rounded
+           :max_height: :75%
+           :min_height 0
+           :prompt_position :top
+           :reverse 0
+           :highlighter (wilder.basic_highlighter)
+           :highlights {:accent (wilder.make_hl
+                                  :WilderAccent
+                                  :Pmenu
+                                  [{:a 1} {:a 1} {:foreground :#f4468f}])
+                        :left [" " (wilder.popupmenu_devicons)]}})
+        ; Helm theme
+        ;(wilder.popupmenu_border_theme
+        ;  {:border :rounded
+        ;   :min_width :100%
+        ;   :min_height :50%
+        ;   :reverse 0
+        ;   :highlighter (wilder.basic_highlighter)
+        ;   :highlights {:accent (wilder.make_hl
+        ;                          :WilderAccent
+        ;                          :Pmenu
+        ;                          [{:a 1} {:a 1} {:foreground :#f4468f}])
+        ;                :left [" " (wilder.popupmenu_devicons)]}})
+        ))))
+export

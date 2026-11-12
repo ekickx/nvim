@@ -31,17 +31,23 @@
 (map! :ni :<C-l> :<ESC><C-W>l "Move between windows")
 
 ;------------
+;  Tab
+;------------
+(map! :n :<Left> ::tabp<cr> "Previous tab")
+(map! :n :<Right> ::tabn<cr> "Next tab")
+
+;------------
 ;  Move Line
 ;------------
-(map! :ni :<A-k> "<cmd>m .-2<cr>"
-      "Move line up")
-(map! :v :<A-k> ":m '<-2<cr>gv"
-      "Move line up")
-
-(map! :ni :<A-j> "<cmd>m .+1<cr>"
-      "Move line down")
-(map! :v :<A-j> ":m '>+1<cr>gv"
-      "Move line down")
+; (map! :ni :<Up> "<cmd>m .-2<cr>"
+;       "Move line up")
+; (map! :v :<Up> ":m '<-2<cr>gv"
+;       "Move line up")
+;
+; (map! :ni :<Down> "<cmd>m .+1<cr>"
+;       "Move line down")
+; (map! :v :<Down> ":m '>+1<cr>gv"
+;       "Move line down")
 
 ;-----------
 ;  Indent
@@ -74,9 +80,9 @@
 ;------------------
 ;  Session
 ;------------------
-(let [path (.. (vim.fn.stdpath :config) :/ :session)]
-  (map! :n :<Leader>ss (: ":mks! %s/" :format path))
-  (map! :n :<Leader>sr (: ":so %s/" :format path)))
+; (let [path (.. (vim.fn.stdpath :config) :/ :session)]
+;   (map! :n :<Leader>ss (: ":mks! %s/" :format path))
+;   (map! :n :<Leader>sr (: ":so %s/" :format path)))
 
 ;-------------
 ;  Avoid RSI
@@ -92,10 +98,11 @@
 (map! :t :<Esc><Esc> :<C-\><C-n>
       "Escape terminal mode")
 
-
 ;-------------
 ;  Open
 ;-------------
-(map! :n :<Leader>oc (let [config (.. (vim.fn.stdpath :config) :/fnl/my )]
-                       (.. "<cmd>tabnew <bar> tcd " config :<CR> ":e "))
-      "Open Config")
+(let [config  (.. (vim.fn.stdpath :config) :/fnl/my )]
+  (map! :n :<Leader>oc (.. "<cmd>tabnew <bar> tcd " config :<CR> ":e ")
+        "Open Config"))
+(map! :n :<Leader>on ":tabnew <CR>:Z content<CR>:e "
+      "Open Note (Obsidian Vault)")

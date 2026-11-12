@@ -1,4 +1,4 @@
--- :fennel:1728214636
+-- :fennel:1791342152
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 local _local_1_ = require("my.utils")
@@ -14,10 +14,8 @@ map_21("ni", "<C-h>", "<ESC><C-W>h", "Move between windows")
 map_21("ni", "<C-j>", "<ESC><C-W>j", "Move between windows")
 map_21("ni", "<C-k>", "<ESC><C-W>k", "Move between windows")
 map_21("ni", "<C-l>", "<ESC><C-W>l", "Move between windows")
-map_21("ni", "<A-k>", "<cmd>m .-2<cr>", "Move line up")
-map_21("v", "<A-k>", ":m '<-2<cr>gv", "Move line up")
-map_21("ni", "<A-j>", "<cmd>m .+1<cr>", "Move line down")
-map_21("v", "<A-j>", ":m '>+1<cr>gv", "Move line down")
+map_21("n", "<Left>", ":tabp<cr>", "Previous tab")
+map_21("n", "<Right>", ":tabn<cr>", "Next tab")
 map_21("v", "<", "<gv", "Visual Indent")
 map_21("v", ">", ">gv", "Visual Indent")
 map_21("nv", "<Leader>y", "\"+yy<esc>", "Copy to system clipboard")
@@ -26,4 +24,9 @@ map_21("n", "<Esc>", "<cmd>noh<cr>", {desc = "Clears search highlights", silent 
 map_21("ni", "<C-s>", "<cmd>w<cr>", "Save file")
 map_21("nv", "<Leader><Leader>", ":", "Command-line mode")
 map_21("nv", "<Leader>f", "/", "Search mode")
-return map_21("t", "<Esc><Esc>", "<C-\\><C-n>", "Escape terminal mode")
+map_21("t", "<Esc><Esc>", "<C-\\><C-n>", "Escape terminal mode")
+do
+  local config = (vim.fn.stdpath("config") .. "/fnl/my")
+  map_21("n", "<Leader>oc", ("<cmd>tabnew <bar> tcd " .. config .. "<CR>" .. ":e "), "Open Config")
+end
+return map_21("n", "<Leader>on", ":tabnew <CR>:Z content<CR>:e ", "Open Note (Obsidian Vault)")

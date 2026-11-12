@@ -1,5 +1,3 @@
-local bootstrap = require "my.bootstrap"
-
 do local success = pcall(vim.cmd, [[packadd oxocarbon.nvim]])
 if success then
   vim.cmd("colorscheme oxocarbon")
@@ -11,9 +9,10 @@ if success then
   require("tangerine").setup {
     compiler = {hooks = {"onsave", "oninit"}}
   }
+  bootstrap.lzn("v3.1.1")
   --bootstrap.rocks()
   require "my"
 end end
 
-vim.cmd [[packadd conjure]]
+-- vim.cmd [[packadd conjure]]
 vim.cmd [[packadd fennel.vim]]
